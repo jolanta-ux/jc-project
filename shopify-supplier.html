@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supplier - Price List  -  Jolanta Cariova</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 200;
+      padding-top: 8px;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 5px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { color: var(--blue); }
+  </style>
+</head>
+<body>
+
+  <div class="blob blob-top" aria-hidden="true"><img src="red-gradient.png" alt="" /></div>
+  <div class="blob blob-bottom" aria-hidden="true"><img src="blue-gradient.png" alt="" /></div>
+
+  <div class="page">
+
+    <!-- Nav -->
+    <header class="header">
+      <div class="header-identity">
+        <a href="index.html" class="site-logo"><img src="jolanta-logo.svg" alt="Jolanta Cariova" /></a>
+        <span class="site-role">Senior product designer</span>
+      </div>
+      <nav class="nav">
+        <div class="nav-dropdown">
+          <a href="shopify-collective.html" class="nav-link" style="color: var(--blue);">Shopify Collective</a>
+          <div class="nav-dropdown-menu">
+            <a href="shopify-collective.html">Project overview</a>
+            <a href="shopify-supplier.html">Supplier - Price list</a>
+            <a href="shopify-retailer.html">Retailer - Products import</a>
+          </div>
+        </div>
+        <a href="food-profile.html" class="nav-link">HelloFresh Food profile</a>
+        <a href="resume.html" class="nav-link">Resume</a>
+      </nav>
+    </header>
+
+    <!-- Page title -->
+    <p class="reveal" style="max-width: 1280px; margin: 40px auto 60px; font-size: 28px; font-weight: 600; color: #fc0524; line-height: 1.2;">Shopify Collective Supplier - Price list</p>
+
+    <!-- My role + Challenge -->
+    <div class="two-col reveal" style="margin-bottom: 100px;">
+      <div>
+        <p class="col-heading">My role</p>
+        <div class="col-body">
+          <p>As the lead designer on the Catalogs team, I owned the supplier side of price list creation and management. This included the most complex parts of the product  -  catalogue creation and sharing features. The challenge was significant enough that the team needed to deeply understand the new business model, and how to apply complex catalogue-specific interactions within an existing design system without breaking familiar patterns for merchants.</p>
+        </div>
+      </div>
+      <div>
+        <p class="col-heading">Challenge</p>
+        <div class="col-body">
+          <p>For suppliers, creating a Price List was a new kind of task  -  one they didn't map to anything that existed before. Shopify typically sells direct  -  this was about creating a collaborative selling relationship with another brand, without actually losing control of anything. Without limiting the language and patterns merchants already understood and were comfortable with. The challenge was to create a seamless, trustworthy, transparent and intuitive experience in customers familiar Shopify environment.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contents -->
+    <p class="section-label">Contents</p>
+    <ul class="toc">
+      <li>
+        <a href="#journey" onclick="event.preventDefault(); document.querySelector('#journey').scrollIntoView({behavior:'smooth', block:'start'});">Supplier's journey</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#walkthrough" onclick="event.preventDefault(); document.querySelector('#walkthrough').scrollIntoView({behavior:'smooth', block:'start'});">Core experience walkthrough</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#process" onclick="event.preventDefault(); document.querySelector('#process').scrollIntoView({behavior:'smooth', block:'start'});">Design process</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#components" onclick="event.preventDefault(); document.querySelector('#components').scrollIntoView({behavior:'smooth', block:'start'});">Components and their behavior</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#edge-cases" onclick="event.preventDefault(); document.querySelector('#edge-cases').scrollIntoView({behavior:'smooth', block:'start'});">Edge case examples and solutions</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#iterations" onclick="event.preventDefault(); document.querySelector('#iterations').scrollIntoView({behavior:'smooth', block:'start'});">Later iterations and explorations</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+    </ul>
+
+    <!-- Supplier's journey -->
+    <div id="journey" style="scroll-margin-top: 80px; max-width: 1280px; margin: 0 auto; padding: 0;">
+      <p class="section-heading reveal" style="margin-bottom: 40px;">Supplier's journey</p>
+    </div>
+    <div class="reveal" style="max-width: 1280px; margin: 0 auto; overflow: visible;">
+      <img src="suppliers-journey.png" alt="Supplier journey flow diagram" style="width: 100%; height: auto; display: block;" />
+    </div>
+    <hr style="max-width: 1280px; margin: 80px auto 60px; border: none; border-top: 1px solid #e0e0e0;" />
+
+    <!-- Solution + Impact -->
+    <div class="reveal" style="max-width: 1000px; margin: 80px auto 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px;">
+      <div>
+        <p class="col-heading">Solution</p>
+        <div class="col-body">
+          <p>The final solution gave suppliers a clean, familiar way to create and manage Price Lists entirely within their Shopify admin. Suppliers could bulk-select products through a full-screen overlay — a deliberate deviation from Shopify's native small modal, designed to handle catalogs of 10,000+ products without overwhelming the interface. They could set a percentage discount, assign specific retail partners, and control whether the Price List was live or saved as a draft. Once shared, the Price List became instantly available to the assigned retailer with no additional steps required.</p>
+          <p>Edge cases were handled transparently — when a supplier removed a product already being sold, the retailer's inventory was set to zero, the product moved to draft, and the retailer was notified automatically.</p>
+        </div>
+      </div>
+      <div>
+        <p class="col-heading">Impact</p>
+        <div class="col-body">
+          <p>The Price List experience became the commercial engine of Shopify Collective — every merchant partnership on the platform starts here. Following launch, we observed that 86% of retailers who connected with a supplier successfully imported products from shared Price Lists, validating that once the connection was made the flow worked clearly. Post-launch iterations continued to improve the experience, including explorations around public Price Lists to address the 64% of retailers who installed Collective but hadn't yet connected with a supplier.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prototype image + CTA -->
+    <div class="reveal" style="max-width: 1000px; margin: 0 auto 80px; overflow: visible; position: relative;">
+      <img src="price-list-preview.png" alt="Shopify Collective Supplier's app - Price list" style="width: calc(115% + 40px); margin-left: -40px; height: auto; display: block;" />
+      <div style="position: absolute; bottom: 8px; left: calc(50% - 20px); transform: translateX(-50%);">
+        <a href="https://www.figma.com/proto/9vqFi24hDzOTUII9IjJk3V/JC-Case-Studies?page-id=0%3A1&node-id=114-40623&viewport=736%2C-607%2C0.14&t=ZbvnZsS2Tr6zIKB2-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=114%3A40623&show-proto-sidebar=1" class="case-link" target="_blank" rel="noopener" style="white-space: nowrap;">Preview prototype</a>
+      </div>
+    </div>
+
+    <!-- Core experience walkthrough -->
+    <div id="walkthrough" class="content-section reveal">
+      <p class="section-heading">Core experience walkthrough</p>
+      <div class="section-body">
+        <p>After connecting with Lalo on Collective, Snuggle Me creates a personalised Price List to share their products for resale.</p>
+        <p style="font-weight: 600; margin-top: 24px;">Creating a Price List:</p>
+        <ol style="padding-left: 24px; margin-top: 8px;">
+          <li>Open the Price Lists section in Shopify Collective</li>
+          <li>Create a new Price List  -  give it a name and set a percentage discount applied to all retail prices</li>
+          <li>Add products from the Shopify catalog  -  products can be added or removed at any time</li>
+          <li>Assign a retailer  -  in this case Lalo  -  to give them access to the list</li>
+          <li>Set the list to Active and share  -  or save as Draft before sharing</li>
+          <li>Lalo receives a notification that Snuggle Me has a Price List available  -  they can now browse and import whichever products they want to sell</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Design process -->
+    <div id="process" class="content-section reveal">
+      <p class="section-heading">Design process</p>
+      <div class="section-body">
+        <p>As a starting point for creating the Price List section, our design team conducted an exploratory study and spoke with our target audience to understand the needs and business processes behind sharing products among different businesses. We also reached out to various design teams within Shopify who had worked on similar problems to gather their input and findings.</p>
+        <p>After collecting all the necessary information, I initiated the first ideation sessions with my product team, involving everyone early on to ensure good team alignment on the problem space. Once the initial low-fidelity design direction was developed and aligned, I conducted usability testing and feedback sessions. The feedback from these sessions was used for subsequent iterations.</p>
+        <p>Throughout the process, we collaborated with other Shopify teams to ensure we followed familiar Shopify patterns and maintained consistency across the platform. The final solution emerged from numerous usability tests and feedback from users and stakeholders. Product iterations were divided into different stages, starting with the release of a minimum viable product and followed by feature updates over the subsequent months.</p>
+        <p>In the final solution, suppliers could share price lists with retailers, and retailers were able to import, edit, and sell the shared products in their stores.</p>
+      </div>
+    </div>
+
+    <!-- Components and their behavior -->
+    <div id="components" class="content-section reveal" style="margin-bottom: 60px;">
+      <p class="section-heading">Components and their behavior</p>
+
+      <!-- Assigning Retailers -->
+      <p class="section-subheading">Assigning Retailers</p>
+      <div class="section-body">
+        <p>To assign retailers, the supplier must select "Assign Access" to choose from the list of retailers they are already connected with on Shopify Collective. When the Price List is unsaved or saved as a draft, the supplier can easily assign and delete access to the Price List with no impact on the retailer's side of the business. If a retailer is assigned and has already imported some products, and the supplier deletes the access, we will ask the supplier to confirm this action. After confirming, we will inform the retailer about these changes.</p>
+        <p>In this component, my objective was to use clear and understandable language to make the process of assigning and deleting retailer access straightforward. This was especially important to prevent potential issues when retailers are already selling the products.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 32px;">
+        <div>
+          <p style="font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 12px;">Empty state - Assign access available</p>
+          <img src="access-1.png" alt="Empty state - Assign access available" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        </div>
+        <div>
+          <p style="font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 12px;">Assigned retailers</p>
+          <img src="access-2.png" alt="Assigned retailers" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        </div>
+        <div>
+          <p style="font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 12px;">Manage access - delete and assign</p>
+          <img src="access-3.png" alt="Manage access - delete and assign" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        </div>
+      </div>
+
+      <!-- Assigning and Deleting Catalog Access flow -->
+      <p class="section-subheading">Assigning and deleting retailers access flow</p>
+      <div class="section-body">
+        <p>The flow below illustrates the process of assigning and removing retailer access through adding retailers across all stores through the sharing process.</p>
+      </div>
+      <div style="margin-top: 32px; margin-bottom: 60px;">
+        <img src="delete-flow.png" alt="Assigning and deleting retailers access flow" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+      </div>
+
+      <!-- Adding Products -->
+      <p class="section-subheading">Adding Products</p>
+      <div class="section-body">
+        <p>Adding products is a crucial part of the Price List. To add products, the supplier must click on the "Add Products" button. A full-screen overlay allows the supplier to bulk select desired products and add them to the Price List. In the overlay, the supplier can click on the product preview icon to open them in their admin, ensuring they are adding the correct products. Once products are added, they can be further added to or deleted from the list at any time. When the Price List is saved as active, the added products will immediately become available for importing on the retailer's end.</p>
+        <p>This component required a complex decision to adapt Shopify's bulk editing component for the product-adding functionality in Collective. The native Shopify flow only offered a small modal for adding products. However, considering that some merchants might have 10,000+ products in their catalog, we needed to provide a more stable product-adding mechanism. This full-screen view allows for filtering and searching without the high risk of accidentally closing the modal.</p>
+      </div>
+      <div style="margin-top: 8px; margin-bottom: 28px; max-width: 1000px; margin-left: auto; margin-right: auto;">
+        <img src="adding-products.png" alt="Adding products to a Price List" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+      </div>
+    </div>
+
+    <!-- Edge case examples and solutions -->
+    <div id="edge-cases" class="content-section reveal" style="margin-bottom: 60px;">
+      <p class="section-heading">Edge case examples and solutions</p>
+      <div class="section-body">
+        <p>During the development of the Price List section, we encountered numerous edge cases that required careful consideration, and adaptation to fulfill Shopify Collective's unique requirements.</p>
+      </div>
+
+      <!-- Supplier removes product from the existing Active Price List -->
+      <p class="section-subheading">Supplier removes product from the existing Active Price List</p>
+      <div class="section-body">
+        <p>When a supplier shares products with a retailer and the retailer begins selling them, situations may arise where the supplier decides to remove some of those products from the retailer's store.</p>
+        <p>What happens to the products that were already on the retailer's store?</p>
+        <p>After researching possibilities and analyzing Shopify's core behaviors, I proposed to the team that we keep these products in the retailer's product core but set them to Draft (not visible on their storefront) and set their inventory to 0, thereby preventing further sales of these products. To ensure clarity, we would trigger an email to inform the retailer about this change.</p>
+        <p>Any previously sold products and those already removed would still need to be fulfilled by the retailer as usual.</p>
+      </div>
+      <div style="margin-top: 32px; margin-bottom: 48px;">
+        <img src="0-stock.png" alt="Products are set to 0 stock" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+      </div>
+
+      <!-- Supplier assigns Retailer to a few Price Lists -->
+      <p class="section-subheading">Supplier assigns Retailer to a few Price Lists</p>
+      <div class="section-body">
+        <p>When a supplier assigns one retailer to multiple price lists with different discounts, and some of the products overlap between these lists.</p>
+        <p>Which discount will we display to the retailer?</p>
+        <p>After presenting several example cases of this scenario to stakeholders and other Shopify teams, we decided to show each product only once, featuring the highest available discount. For instance, if a supplier adds the same product to different price lists with discounts of 25% and 50%, we will display the product with the 50% discount.</p>
+      </div>
+    </div>
+
+    <!-- Later iterations and explorations -->
+    <div id="iterations" class="content-section reveal" style="margin-bottom: 110px;">
+      <p class="section-heading">Later iterations and explorations</p>
+      <div class="section-body">
+        <p>Following the release of the Collective, we continued our efforts to explore further possibilities and improvements for Price lists.</p>
+        <p>Here are some of the planned future projects and updates:</p>
+      </div>
+
+      <!-- Curated public products -->
+      <p class="section-subheading">Curated public products</p>
+      <div class="section-body">
+        <p>Following the launch of Shopify Collective, we observed that 64% of retailers did not connect with any suppliers after installing the Collective app, creating a dead-end situation for them in using the app. However, once retailers connected with suppliers, 86% of them successfully imported products from shared price lists.</p>
+        <p>To address this challenge, our team embarked on a project aimed at improving user engagement. My role involved conducting exploratory ideation and gathering feedback from our merchants.</p>
+        <p>By making a public price list readily available on the platform, retailers can bypass the entire process of connecting with suppliers and obtaining a personalized price list. This streamlined approach allows retailers to efficiently start importing and selling products immediately, enabling them to quickly grasp the app's value proposition and benefits.</p>
+      </div>
+      <div style="margin-top: 32px;">
+        <img src="curated.png" alt="Curated public products" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+      </div>
+
+      <!-- Default Price List -->
+      <p class="section-subheading">Default Price List</p>
+      <div class="section-body">
+        <p>We have the aim to simplify all Collective processes to make it as simple as possible with starting to use a new sales channel for suppliers to expand their business.</p>
+        <p>We were exploring the default price list idea to automatically create to all Suppliers to lower the barrier to start sharing and reselling their products. We would create a default price list based on set criteria and would create it as a Draft which would not be viable to any of their partners.</p>
+      </div>
+    </div>
+
+    <!-- Case study -->
+    <p class="section-label case-studies-label">Case study</p>
+    <div class="reveal" style="max-width: 1000px; margin: 0 auto 100px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 40px; align-items: center;">
+      <div class="cs-img-wrap" style="margin-left: -24px;">
+        <a href="shopify-retailer.html">
+          <img src="product-import-img.png" alt="Retailer - Products import" style="width: 100%; height: auto; display: block;" />
+        </a>
+      </div>
+      <div style="display: flex; flex-direction: column; justify-content: center;">
+        <p class="section-heading" style="margin-bottom: 16px;">Retailer - Products import</p>
+        <p style="font-size: 16px; line-height: 26px; color: var(--dark); margin-bottom: 20px;">Designing the retailer-side experience  -  discovering supplier catalogs, importing products, and making them live in the store instantly.</p>
+        <a href="shopify-retailer.html" class="case-link" style="white-space: nowrap;">View the case study</a>
+      </div>
+    </div>
+
+    <div style="padding-bottom: 80px;"></div>
+
+  </div>
+  <script src="cursor.js"></script>
+  <script src="scroll.js"></script>
+</body>
+</html>

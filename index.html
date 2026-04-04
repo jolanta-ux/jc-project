@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jolanta Cariova  -  Senior Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 200;
+      padding-top: 8px;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 5px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { color: var(--blue); }
+  </style>
+</head>
+<body>
+
+  <!-- Background blobs -->
+  <div class="blob blob-top" aria-hidden="true"><img src="red-gradient.png" alt="" /></div>
+  <div class="blob blob-bottom" aria-hidden="true"><img src="blue-gradient.png" alt="" /></div>
+
+  <div class="page">
+
+    <!-- Nav -->
+    <header class="header reveal">
+      <div class="header-identity">
+        <a href="index.html" class="site-logo">
+          <img src="jolanta-logo.svg" alt="Jolanta Cariova" />
+        </a>
+        <span class="site-role">Senior product designer</span>
+      </div>
+      <nav class="nav">
+        <div class="nav-dropdown">
+          <a href="shopify-collective.html" class="nav-link">Shopify Collective</a>
+          <div class="nav-dropdown-menu">
+            <a href="shopify-collective.html">Project overview</a>
+            <a href="shopify-supplier.html">Supplier - Price list</a>
+            <a href="shopify-retailer.html">Retailer - Products import</a>
+          </div>
+        </div>
+        <a href="food-profile.html" class="nav-link">HelloFresh Food profile</a>
+        <a href="resume.html" class="nav-link">Resume</a>
+      </nav>
+    </header>
+
+    <!-- Case studies -->
+    <main class="case-studies">
+
+      <!-- Shopify Collective -->
+      <article class="case reveal" id="shopify">
+        <a href="shopify-collective.html" class="case-image-link">
+          <div class="case-image">
+            <img
+              src="collective-visual.png"
+              alt="Shopify Collective app interface"
+            />
+          </div>
+        </a>
+        <div class="case-logo">
+          <img src="collective-logo.png" alt="Shopify Collective" />
+        </div>
+        <p class="case-period">2021 - 2023</p>
+        <p class="case-description">
+          Shopify Collective is a native Shopify app that empowers collaboration between Shopify merchants, allowing them to sell each other's products seamlessly within the Shopify ecosystem.
+        </p>
+        <a href="shopify-collective.html" class="case-link">View the case study</a>
+      </article>
+
+      <!-- HelloFresh Food profile -->
+      <article class="case reveal" id="hellofresh">
+        <a href="food-profile.html" class="case-image-link">
+          <div class="case-image">
+            <img
+              src="food-profile-visual.png"
+              alt="HelloFresh Food profile interface"
+            />
+          </div>
+        </a>
+        <div class="case-logo">
+          <img src="hf-logo.png" alt="HelloFresh Food profile" />
+        </div>
+        <p class="case-period">2025 - Present</p>
+        <p class="case-description">
+          Food profile, a strategic platform initiative across international HelloFresh brands. Allows customers to set their food preferences powering ML-driven personalization and recommendations.
+        </p>
+        <a href="food-profile.html" class="case-link">View the case study</a>
+      </article>
+
+    </main>
+
+    <!-- How this was built -->
+    <section class="built-section reveal">
+      <p class="section-label">How I built this portfolio</p>
+      <div class="built-steps">
+
+        <div class="built-step">
+          <span class="built-step-number">01</span>
+          <p class="built-step-title">Content and copy</p>
+          <p class="built-step-body">Started with writing all the case studies content and worked with Claude to structure, refine, and edit the copy - making sure each section communicates clearly and concisely.</p>
+        </div>
+
+        <div class="built-step">
+          <span class="built-step-number">02</span>
+          <p class="built-step-title">Design outline in Figma</p>
+          <p class="built-step-body">In Figma by creating a design outline and defining visual tokens - colour, typography, and spacing - to establish a clear foundation before moving on to code.</p>
+        </div>
+
+        <div class="built-step">
+          <span class="built-step-number">03</span>
+          <p class="built-step-title">Development with Claude Code</p>
+          <p class="built-step-body">Used Claude Code to develop the full website - translating the Figma design into working HTML and CSS, and iterating on layout and interactions.</p>
+        </div>
+
+        <div class="built-step">
+          <span class="built-step-number">04</span>
+          <p class="built-step-title">Published on GitHub</p>
+          <p class="built-step-body">Pushed development files to GitHub and published via Netlify Drop to keep it live, version-controlled, and easy to update.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <div style="padding-bottom: 80px;"></div>
+
+  </div>
+
+  <script src="cursor.js"></script>
+  <script src="scroll.js"></script>
+</body>
+</html>

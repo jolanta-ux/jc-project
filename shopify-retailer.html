@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retailer - Products Import  -  Jolanta Cariova</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 200;
+      padding-top: 8px;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 5px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { color: var(--blue); }
+  </style>
+</head>
+<body>
+
+  <div class="blob blob-top" aria-hidden="true"><img src="red-gradient.png" alt="" /></div>
+  <div class="blob blob-bottom" aria-hidden="true"><img src="blue-gradient.png" alt="" /></div>
+
+  <div class="page">
+
+    <!-- Nav -->
+    <header class="header">
+      <div class="header-identity">
+        <a href="index.html" class="site-logo"><img src="jolanta-logo.svg" alt="Jolanta Cariova" /></a>
+        <span class="site-role">Senior product designer</span>
+      </div>
+      <nav class="nav">
+        <div class="nav-dropdown">
+          <a href="shopify-collective.html" class="nav-link" style="color: var(--blue);">Shopify Collective</a>
+          <div class="nav-dropdown-menu">
+            <a href="shopify-collective.html">Project overview</a>
+            <a href="shopify-supplier.html">Supplier - Price list</a>
+            <a href="shopify-retailer.html">Retailer - Products import</a>
+          </div>
+        </div>
+        <a href="food-profile.html" class="nav-link">HelloFresh Food profile</a>
+        <a href="resume.html" class="nav-link">Resume</a>
+      </nav>
+    </header>
+
+    <!-- Page title -->
+    <p class="reveal" style="max-width: 1280px; margin: 40px auto 60px; font-size: 28px; font-weight: 600; color: #fc0524; line-height: 1.2;">Shopify Collective Retailer - Products import</p>
+
+    <!-- My role + Challenge -->
+    <div class="two-col reveal" style="margin-bottom: 100px;">
+      <div>
+        <p class="col-heading">My role</p>
+        <div class="col-body">
+          <p>I led the design of the retailer-side import experience  -  the flow that lets retailers browse a supplier's shared Price List, select products, and bring them into their Shopify store. I worked closely with other teams responsible for related parts of the retailer journey to ensure the full experience felt coherent and intuitive end-to-end.</p>
+        </div>
+      </div>
+      <div>
+        <p class="col-heading">Challenge</p>
+        <div class="col-body">
+          <p>For retailers, the import flow had to feel immediate and trustworthy. They were adding products from another business into their store  -  products they didn't own, with pricing and inventory managed elsewhere. The challenge was making that feel seamless: giving retailers enough information to make confident decisions, handling shipping rate setup without creating confusion, and ensuring that once products were imported they were genuinely ready to sell  -  not left in an ambiguous state that required further troubleshooting.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contents -->
+    <p class="section-label">Contents</p>
+    <ul class="toc">
+      <li>
+        <a href="#journey" onclick="event.preventDefault(); document.querySelector('#journey').scrollIntoView({behavior:'smooth', block:'start'});">Retailer's journey</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#walkthrough" onclick="event.preventDefault(); document.querySelector('#walkthrough').scrollIntoView({behavior:'smooth', block:'start'});">Core experience walkthrough</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#process" onclick="event.preventDefault(); document.querySelector('#process').scrollIntoView({behavior:'smooth', block:'start'});">Design process</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#problem-solving" onclick="event.preventDefault(); document.querySelector('#problem-solving').scrollIntoView({behavior:'smooth', block:'start'});">Problem solving</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+    </ul>
+
+    <!-- Retailer's journey -->
+    <div id="journey" style="scroll-margin-top: 80px; max-width: 1280px; margin: 0 auto; padding: 0;">
+      <p class="section-heading reveal" style="margin-bottom: 40px;">Retailer's journey</p>
+    </div>
+    <div class="reveal" style="max-width: 1280px; margin: 0 auto; overflow: visible;">
+      <img src="retailer-flow.png" alt="Retailer journey flow diagram" style="width: 100%; height: auto; display: block;" />
+    </div>
+    <hr style="max-width: 1280px; margin: 80px auto 60px; border: none; border-top: 1px solid #e0e0e0;" />
+
+    <!-- Solution + Impact -->
+    <div class="reveal" style="max-width: 1000px; margin: 48px auto 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px;">
+      <div>
+        <p class="col-heading">Solution</p>
+        <div class="col-body">
+          <p>The final solution let retailers efficiently browse, select, and import products from a supplier's Price List in a single flow. A tabbed interface separated available and imported products — making it immediately clear what had and hadn't been brought into the store. After importing, the tab automatically switched to show the newly imported products, with a direct link to Shopify Core pre-filtered to show Collective products, so retailers could activate them for sale without hunting through their admin.</p>
+          <p>A shipping rate confirmation modal — added after launch based on a critical issue we identified — ensured retailers understood supplier shipping costs at the moment of import, preventing checkout errors for end customers down the line.</p>
+        </div>
+      </div>
+      <div>
+        <p class="col-heading">Impact</p>
+        <div class="col-body">
+          <p>The import experience enabled thousands of merchant partnerships to move from connection to active selling quickly and without friction.</p>
+          <p>One significant issue we caught post-launch: 27 merchants had over 9,000 products published through Collective that were unavailable for purchase due to unassigned shipping profiles — visible on storefronts but blocked at checkout. The shipping rate confirmation modal I designed solved this directly, surfacing supplier rates at the moment of import and ensuring products were sale-ready before going live. This prevented the issue from recurring as Collective scaled.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prototype image + CTA -->
+    <div class="reveal" style="max-width: 1000px; margin: 0 auto 80px; overflow: visible; position: relative;">
+      <img src="retailer-view.png" alt="Shopify Collective Retailer's app" style="width: calc(115% + 40px); margin-left: -40px; height: auto; display: block;" />
+      <div style="position: absolute; bottom: 36px; left: calc(50% - 20px); transform: translateX(-50%);">
+        <a href="https://www.figma.com/proto/9vqFi24hDzOTUII9IjJk3V/JC-Case-Studies?page-id=0%3A1&node-id=114-25622&viewport=736%2C-607%2C0.14&t=ZbvnZsS2Tr6zIKB2-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=114%3A25622&show-proto-sidebar=1" class="case-link" target="_blank" rel="noopener" style="white-space: nowrap;">Preview prototype</a>
+      </div>
+    </div>
+
+    <!-- Core experience walkthrough -->
+    <div id="walkthrough" class="content-section reveal">
+      <p class="section-heading">Core experience walkthrough</p>
+      <div class="section-body">
+        <p>After completing onboarding, Retailer Lalo connects with Supplier Snuggle Me, receives a personalised Price List, and proceeds to import products.</p>
+        <p style="font-weight: 600; margin-top: 24px;">Importing products:</p>
+        <ol style="padding-left: 24px; margin-top: 8px;">
+          <li>Navigate to the Suppliers section in Shopify Collective and select Snuggle Me</li>
+          <li>On the supplier profile page: view available products, preview shipping rates, and review additional product details</li>
+          <li>Multi-select the products to import</li>
+          <li>Click "Import Products" at the bottom of the screen</li>
+          <li>On first import from a supplier, a modal confirms the supplier's shipping rates  -  these can be managed later in Shopify Shipping Settings</li>
+          <li>Imported products appear in Lalo's Shopify Products list as drafts, ready to be set to active and made visible in their store</li>
+        </ol>
+        <p style="margin-top: 24px;">Once Lalo starts selling Snuggle Me's products, orders are automatically routed  -  Snuggle Me fulfils their items directly, and Lalo can track fulfilment status from their own admin.</p>
+      </div>
+    </div>
+
+    <!-- Design process -->
+    <div id="process" class="content-section reveal">
+      <p class="section-heading">Design process</p>
+      <div class="section-body">
+        <p>As part of the Catalogs team on the Shopify Collective project, I oversaw the product exchange between suppliers and retailers. On the supplier's side, I led the development of the Price List creation flow, while on the retailer's side, I managed the product importing flow.</p>
+        <p>An important objective for me while working on this flow was to utilize familiar patterns for Shopify merchants, although we needed to adapt these patterns to suit our specific requirements. Throughout this process, I collaborated closely with other Shopify Collective designers to ensure a cohesive retailer experience and to align on a unified user journey.</p>
+        <p>During the design process, several challenges emerged, such as how to differentiate between available products and imported products, and how to effectively guide retailers on finding, editing, and selling imported products.</p>
+        <p>In the final solution, retailers were able to efficiently receive, preview, select, import, activate, and quickly start reselling products in their store.</p>
+      </div>
+    </div>
+
+    <!-- Problem solving -->
+    <div id="problem-solving" class="content-section reveal" style="margin-bottom: 40px;">
+      <p class="section-heading">Problem solving</p>
+
+      <!-- Setting Shipping Rates -->
+      <p class="section-subheading">Setting Shipping Rates</p>
+      <div class="section-body">
+        <p>Upon merchants importing products through Collective, they are not always automatically assigned to a shipping profile, leading to some products becoming unavailable for sale. After launching Collective for pre-selected merchants, we observed that 27 merchants had over 9,000 products published through Collective that were unavailable for purchase.</p>
+        <p>This issue was critical to resolve to prevent checkout errors for end-customers. Although these products were visible online and could be added to the cart, an error would occur during checkout indicating that these products could not be purchased.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; margin-bottom: 60px; align-items: start;">
+        <div>
+          <p style="font-size: 18px; font-weight: 600; color: var(--dark); margin-bottom: 8px;">Problem case example:</p>
+          <ol style="font-size: 18px; line-height: 32px; padding-left: 24px; margin-top: 8px;">
+            <li>Retailer imports product from Shopify Collective app</li>
+            <li>Retailer sets imported product to Active</li>
+            <li>Retailer adds product to their Sales channel</li>
+            <li>Buyer adds this product to their cart and proceeds to check out</li>
+            <li>Check out is blocked due to Shipping location not assigned to the Shipping profile</li>
+            <li>Retailer gets notified about abandoned checkout but currently no information about possible reasons is displayed</li>
+          </ol>
+        </div>
+        <div>
+          <img src="checkout-error.png" alt="Checkout error example" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+          <p style="font-size: 13px; color: var(--grey); margin-top: 8px;">Checkout error example</p>
+        </div>
+      </div>
+      <div class="section-body">
+        <p>Finding a technically feasible solution that wouldn't demand extensive team effort was a significant challenge. I conducted workshops and collaboration sessions within our product team to gather insights from developers and clarify the technical constraints.</p>
+        <p>After testing several potential solutions and strategising with developers, my final proposal was to notify retailers about shipping costs during the importing flow. This approach would allow the retailer to understand the shipping costs, understand what changes they would need to make, and ensure they set shipping rates for locations where rates were not initially configured  -  preventing checkout issues in those regions.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px;">
+        <div>
+          <p style="font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 12px;">Importing products</p>
+          <img src="modal-1.png" alt="Importing products modal" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        </div>
+        <div>
+          <p style="font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 12px;">Preview shipping costs after importing products</p>
+          <img src="modal-2.png" alt="Preview shipping costs modal" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        </div>
+      </div>
+
+      <!-- Adding tabs -->
+      <p class="section-subheading">Adding tabs for Available / Imported products</p>
+      <div class="section-body">
+        <p>A significant challenge I faced was determining how to differentiate between newly imported products and the overall product inventory, considering that retailers and suppliers would frequently exchange new special offers.</p>
+        <p>After testing various options with merchants and presenting my findings to stakeholders, I decided on implementing tabs in the product catalog. The default tab would display only Available products, while a second tab would show Imported products. Upon selecting and importing products, the Imported tab would automatically open. It included a link to Shopify Core, allowing retailers to efficiently edit and activate the imported products for immediate sale.</p>
+      </div>
+
+      <!-- Loading products in Core -->
+      <p class="section-subheading">Loading products in Core to set products active</p>
+      <div class="section-body">
+        <p>Through usability testing, we discovered that it wasn't clear to retailers where Imported products were located and how they could set them as active.</p>
+        <p>To address this issue, I proposed an interaction: after selecting and importing products, the "Imported Products" tab would automatically open, clearly indicating the number of recently imported products. Within this tab, we included a message and a link that opens the retailer's core products page filtered to show Collective products. This streamlined process allows them to easily edit and activate these products for sale.</p>
+      </div>
+      <div style="margin-top: 40px;">
+        <img src="emport.png" alt="Available / Imported product tabs" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+      </div>
+    </div>
+
+    <!-- Case study -->
+    <p class="section-label case-studies-label">Case study</p>
+    <div class="reveal" style="max-width: 1000px; margin: 0 auto 100px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 40px; align-items: center;">
+      <div class="cs-img-wrap" style="margin-left: -24px;">
+        <a href="shopify-supplier.html">
+          <img src="price-list-img.png" alt="Supplier - Price list" style="width: 100%; height: auto; display: block;" />
+        </a>
+      </div>
+      <div style="display: flex; flex-direction: column; justify-content: center;">
+        <p class="section-heading" style="margin-bottom: 16px;">Supplier - Price list</p>
+        <p style="font-size: 16px; line-height: 26px; color: var(--dark); margin-bottom: 20px;">Designing the core supplier-side workflow  -  from creating curated price lists to managing retailer access and product availability.</p>
+        <a href="shopify-supplier.html" class="case-link" style="white-space: nowrap;">View the case study</a>
+      </div>
+    </div>
+
+    <div style="padding-bottom: 80px;"></div>
+
+  </div>
+  <script src="cursor.js"></script>
+  <script src="scroll.js"></script>
+</body>
+</html>

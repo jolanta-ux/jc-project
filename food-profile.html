@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HelloFresh Food Profile  -  Jolanta Cariova</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 200;
+      padding-top: 8px;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 5px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { color: var(--blue); }
+  </style>
+</head>
+<body>
+
+  <div class="blob blob-top" aria-hidden="true"><img src="red-gradient.png" alt="" /></div>
+  <div class="blob blob-bottom" aria-hidden="true"><img src="blue-gradient.png" alt="" /></div>
+
+  <div class="page">
+
+    <!-- Nav -->
+    <header class="header">
+      <div class="header-identity">
+        <a href="index.html" class="site-logo"><img src="jolanta-logo.svg" alt="Jolanta Cariova" /></a>
+        <span class="site-role">Senior product designer</span>
+      </div>
+      <nav class="nav">
+        <div class="nav-dropdown">
+          <a href="shopify-collective.html" class="nav-link">Shopify Collective</a>
+          <div class="nav-dropdown-menu">
+            <a href="shopify-collective.html">Project overview</a>
+            <a href="shopify-supplier.html">Supplier - Price list</a>
+            <a href="shopify-retailer.html">Retailer - Products import</a>
+          </div>
+        </div>
+        <a href="food-profile.html" class="nav-link" style="color: var(--blue);">HelloFresh Food profile</a>
+        <a href="resume.html" class="nav-link">Resume</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <div class="page-hero reveal">
+      <div class="hero-meta">
+        <div class="hero-logo">
+          <img src="hf-logo.png" alt="HelloFresh" />
+        </div>
+        <p class="hero-period">2025 - Present</p>
+        <p class="hero-intro">Food profile, a strategic platform initiative across international HelloFresh brands. Allows customers to set their food preferences powering ML-driven personalization and recommendations.</p>
+      </div>
+      <div class="hero-image">
+        <img src="food-profile-visual.png" alt="HelloFresh Food profile interface" />
+      </div>
+    </div>
+
+    <!-- Info cards -->
+    <div class="info-cards">
+      <div class="info-card reveal">
+        <p class="info-card-label">Platform</p>
+        <p class="info-card-value">Web and mobile App<br>15 markets across 5 brands</p>
+      </div>
+      <div class="info-card reveal">
+        <p class="info-card-label">AI workflows</p>
+        <p class="info-card-value">AI-assisted prototyping<br>and workflow automation</p>
+      </div>
+      <div class="info-card reveal">
+        <p class="info-card-label">Timeline</p>
+        <p class="info-card-value">2025 Q4 - Present<br>Product active and scaling</p>
+      </div>
+      <div class="info-card reveal">
+        <p class="info-card-label">Adoption</p>
+        <p class="info-card-value">25% completion pre-promotion<br>70%+ expected post-promotion</p>
+      </div>
+      <div class="info-card reveal">
+        <p class="info-card-label">Role</p>
+        <p class="info-card-value">Leading Customer profile UX</p>
+      </div>
+    </div>
+
+    <!-- Contents -->
+    <p class="section-label">Contents</p>
+    <ul class="toc">
+      <li>
+        <a href="#overview" onclick="event.preventDefault(); document.querySelector('#overview').scrollIntoView({behavior:'smooth', block:'start'});">Food profile project overview</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#solution" onclick="event.preventDefault(); document.querySelector('#solution').scrollIntoView({behavior:'smooth', block:'start'});">Solution</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#impact" onclick="event.preventDefault(); document.querySelector('#impact').scrollIntoView({behavior:'smooth', block:'start'});">Impact</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#research" onclick="event.preventDefault(); document.querySelector('#research').scrollIntoView({behavior:'smooth', block:'start'});">Research</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#design-process" onclick="event.preventDefault(); document.querySelector('#design-process').scrollIntoView({behavior:'smooth', block:'start'});">Design process</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#ai-workflows" onclick="event.preventDefault(); document.querySelector('#ai-workflows').scrollIntoView({behavior:'smooth', block:'start'});">AI workflows</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#personalization" onclick="event.preventDefault(); document.querySelector('#personalization').scrollIntoView({behavior:'smooth', block:'start'});">How personalization works</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#problem-solving" onclick="event.preventDefault(); document.querySelector('#problem-solving').scrollIntoView({behavior:'smooth', block:'start'});">Problem solving</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="#updates" onclick="event.preventDefault(); document.querySelector('#updates').scrollIntoView({behavior:'smooth', block:'start'});">Food profile updates in progress</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+    </ul>
+
+    <!-- Overview anchor -->
+    <div id="overview" style="scroll-margin-top: 80px;"></div>
+
+    <!-- My role + Challenge -->
+    <div class="two-col reveal" style="margin-bottom: 80px;">
+      <div>
+        <p class="col-heading">My role</p>
+        <div class="col-body">
+          <p>I led the design of Food Profile from scratch - there was no prior version to build on. I worked with the personalization team to define what preference data to collect and how to structure it, ran user research to understand how customers thought about their food preferences, owned the design across all platforms, and navigated the complexity of shipping a single experience across five international HelloFresh brands and fifteen markets.</p>
+        </div>
+      </div>
+      <div>
+        <p class="col-heading">Challenge</p>
+        <div class="col-body">
+          <p>Every HelloFresh customer received the same experience regardless of who they were. Menu personalization came down to a single generic preference setting - a dropdown with a handful of broad categories - and everyone in that bucket got the same menu ranking and the same pre-selected meals. For customers who had been ordering for months or years, this was increasingly frustrating. They felt like strangers to a service they used every week. There was no way to tell HelloFresh what they actually liked, what they'd never eat, or what kind of cooking they wanted to do - and no sign that HelloFresh was learning anything about them over time. Food Profile was the response to that: a way to finally let customers express who they are, and give HelloFresh the signal it needed to treat them accordingly.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image + Solution -->
+    <div id="solution" class="two-col reveal" style="margin-bottom: 60px; max-width: 1000px; margin-left: auto; margin-right: auto;">
+      <div style="position: relative;">
+        <img src="food-profile-img.png" alt="Food profile app screen" style="width: 100%; height: auto; display: block;" />
+        <a href="https://www.figma.com/proto/LRXRjQVve5ARM3HFa32LFe/Food-profile?node-id=1-14262&t=7pBIm9r05GSUYvar-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A14262" class="case-link" target="_blank" rel="noopener" style="position: absolute; bottom: 52px; left: 50%; transform: translateX(calc(-50% - 20px)); white-space: nowrap;">Preview prototype</a>
+      </div>
+      <div>
+        <p class="col-heading">Solution</p>
+        <div class="col-body">
+          <p>We designed Food Profile, a centralized preference system where customers can define and manage their food tastes.</p>
+          <p>Customers can:</p>
+          <ul>
+            <li>Set diet preferences</li>
+            <li>Define household size and composition</li>
+            <li>Set hard diet restrictions (eg. Diet type, Allergies)</li>
+            <li>Set food preferences (eg. Proteins, Cuisines, Dish types)</li>
+            <li>Update taste preferences anytime</li>
+          </ul>
+          <p>After updating their profile, personalization is applied immediately, adjusting the menu ranking while keeping the full menu available at all times.</p>
+          <p>This allows customers to discover relevant meals without losing control over their selection.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impact -->
+    <div id="impact" class="content-section reveal">
+      <p class="section-heading">Impact</p>
+
+      <p class="section-subheading">Customer Impact</p>
+      <div class="section-body">
+        <p>Food Profile helped customers better tailor their experience to their preferences, making meal selection more relevant and easier to navigate.</p>
+        <p>We observed that when customers visited the Food Profile page, they showed strong intent  -  many completed most or all questions in a single session, which was an unexpected but consistent behavior. This indicated that customers clearly understood the value of the feature.</p>
+        <p>As soon as customers saw their menus adapting based on their preferences, their motivation to complete the profile increased further. This created a more engaging and personalized experience without restricting choice.</p>
+      </div>
+
+      <p class="section-subheading">Business Impact</p>
+      <div class="section-body">
+        <p>The main KPI for Food Profile is profile completion rate, as it directly drives the effectiveness of personalization.</p>
+        <p>In the early phase, we focused on building a strong foundation rather than actively pushing adoption. Even without prompting or marketing the feature, we saw a natural completion rate of up to 20%, validating strong product-market fit.</p>
+        <p>The feature was first released incrementally to US customers across app and web, where we immediately saw positive engagement. Based on early success, we scaled to 100% of US users, followed by rollout to Factor US customers and additional HelloFresh markets.</p>
+        <p>With upcoming efforts to actively prompt users, we expect to reach 50%+ completion rate, improving personalization at scale and supporting long-term retention and customer value.</p>
+      </div>
+    </div>
+
+    <!-- Research -->
+    <div id="research" class="content-section reveal">
+      <p class="section-heading">Research</p>
+      <div class="section-body">
+        <p>I partnered closely with the UX research team throughout, starting with a card sorting exercise to understand how customers mentally grouped food preferences, subscription settings, and related options. Those findings directly shaped the structure of the Food Profile categories.</p>
+        <p>During early design iterations I ran concept and usability sessions to observe how customers interacted with the feature and identify what needed refinement before release.</p>
+        <p>After launch, I set up Sprig session recordings to monitor real customer behaviour and surface opportunities for further improvement and together with UX researchers we are preparing for food profile and personalisation moderated study.</p>
+      </div>
+      <div style="margin-top: 48px;">
+        <img src="card-sorting.png" alt="Card sorting results - categories clustering" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        <p style="font-size: 14px; color: var(--grey); margin-top: 12px;">Card sorting results - categories clustering</p>
+      </div>
+    </div>
+
+    <!-- Design process -->
+    <div id="design-process" class="content-section reveal">
+      <p class="section-heading">Design process</p>
+      <div class="section-body">
+        <p>Our team was created to address a growing gap in the product: poor food recommendations.</p>
+        <p>As HelloFresh expanded the menu from around 100 to 500 recipes per week, strong personalization became critical to avoid overwhelming customers.</p>
+        <p>The design process included:</p>
+        <ul>
+          <li>Synthesizing existing research and customer insights</li>
+          <li>Facilitating initial card sort research to understand customers' mental models</li>
+          <li>Mapping personalization signals and data flows</li>
+          <li>Contributing to definition of scalable preference models</li>
+          <li>Designing UX patterns compatible with the HelloFresh design system and contributing to it</li>
+          <li>Designing international cross-brand experience</li>
+          <li>Including AI workflows to speed up the process and increase the output quality</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- AI workflows -->
+    <div id="ai-workflows" class="content-section reveal">
+      <p class="section-heading">AI workflows</p>
+      <div class="section-body">
+        <p>During the Food Profile project, AI became an important part of my workflow.</p>
+        <p>I used tools such as Vercel, Figma Make, and Claude to quickly prototype early ideas and explore different design directions. This helped move the design process into a rapid exploration phase and enabled productive discussions with the team early on.</p>
+        <p>For higher fidelity work, I used Claude Code to review designs for accessibility and design system compliance. This helped me prepare more informed discussions with both the design system team and developers before implementation.</p>
+        <p>I also used Claude to support writing acceptance criteria, preparing testing scenarios, and analyzing early performance signals after release.</p>
+        <p>For UX writing, I created initial drafts of copy proposals before reviewing them with copywriters.</p>
+        <p>Overall, AI tools became a practical part of my workflow, helping me move faster, explore more ideas, and support clearer collaboration with product and engineering teams.</p>
+      </div>
+    </div>
+
+    <!-- How personalization works -->
+    <div id="personalization" class="content-section reveal">
+      <p class="section-heading">How personalization works</p>
+      <div class="section-body">
+        <p>Personalization combines two types of signals:</p>
+        <p><span style="font-weight: 600;">Explicit signals:</span><br>Information customers provide directly: Diet preferences, Household size, Allergies, Cuisines, ect.</p>
+        <p><span style="font-weight: 600;">Implicit signals:</span><br>Behavioral data gathered from usage: Recipes ordered, Recipes skipped, Weekly selections, Meal ratings, ect.</p>
+        <p>These signals are used to score recipes and dynamically rank the menu and pre-select weekly subscription meals.</p>
+        <p>Relevant meals appear higher in the menu while still keeping all recipes available.</p>
+        <p>This approach avoids over-filtering and allows flexibility when customer behavior differs from stated preferences.</p>
+      </div>
+      <div style="margin-top: 48px; overflow: visible;">
+        <img src="food-profile-flow.png" alt="Food profile personalization system flow diagram" style="width: calc(100% + 140px); margin-left: -70px; height: auto; display: block;" />
+      </div>
+    </div>
+
+    <!-- Problem solving -->
+    <div id="problem-solving" class="content-section reveal">
+      <p class="section-heading">Problem solving</p>
+
+      <!-- Design system inconsistencies -->
+      <p class="section-subheading">Design system inconsistencies</p>
+      <div class="section-body">
+        <p>The HelloFresh design system supports 9 brands, multiple platforms (React Native and Web), and over 15 international languages. While the system is mature, it is still evolving, which sometimes leads to component and pattern inconsistencies.</p>
+        <p>During this project I addressed several of these gaps while also contributing improvements back to the design system.</p>
+        <p>One example was introducing a unified <span style="font-weight: 600;">Save pattern</span>. I reviewed existing Save interactions across the platform and proposed a consistent solution: a sticky bottom Save bar for settings. This pattern was implemented for both App and Web, improving consistency across platforms.</p>
+        <p>Another example was the <span style="font-weight: 600;">attributes selection component</span>. In the MVP we reused an existing component, but its behavior was limited and not fully suited for the feature. I proposed a new component designed to work across both Web and App, while also being reusable in other settings sections.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 52px; margin-top: 40px;">
+        <!-- Save pattern column -->
+        <div style="display: flex; flex-direction: column;">
+          <p style="font-size: 18px; font-weight: 600; color: var(--dark); margin-bottom: 20px;">Save pattern</p>
+          <p style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 20px;">Inconsistent Setting saving patterns</p>
+          <img src="save-patterns.png" alt="Inconsistent save patterns across the platform" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+          <div style="display: flex; justify-content: center; margin: 36px 0;">
+            <img src="arrow-down.svg" alt="" style="width: 15px; height: auto;" />
+          </div>
+          <p style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 20px;">Implemented save pattern</p>
+          <img src="implemented-save.png" alt="New sticky save bar" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        </div>
+        <!-- Attributes selection column -->
+        <div style="display: flex; flex-direction: column;">
+          <p style="font-size: 18px; font-weight: 600; color: var(--dark); margin-bottom: 20px;">Attributes selection</p>
+          <p style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 20px;">MVP attributes selector</p>
+          <img src="multi-select-dropdown.png" alt="MVP dropdown attributes selector" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+          <div style="display: flex; justify-content: center; margin: 36px 0;">
+            <img src="arrow-down.svg" alt="" style="width: 15px; height: auto;" />
+          </div>
+          <p style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 20px;">New attributes selection pattern</p>
+          <img src="multi-select-drawer.png" alt="New drawer-based attributes selection component" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        </div>
+      </div>
+
+      <!-- Localization -->
+      <p class="section-subheading" style="margin-top: 80px;">Localization</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 52px; margin-top: 24px; align-items: start;">
+        <div class="col-body">
+          <p>For this project I took ownership of translation keys and localization handling for the Food Profile page and its related settings.</p>
+          <p>The goal was to ensure that the design works reliably across all supported languages and markets, and that longer translations would not break layouts or components.</p>
+          <p>During this process I also identified several localization-related design issues in the international signup funnel. I raised these concerns and proposed design updates to ensure the experience scales better across markets.</p>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 16px;">
+          <div style="flex: 1;">
+            <p style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 4px;">Previous exclusions layout</p>
+            <p style="font-size: 12px; color: var(--grey); margin-bottom: 12px;">Observed in screen recordings</p>
+            <img src="exclusions-1.png" alt="Previous exclusions layout" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+          </div>
+          <img src="arrow-right.svg" alt="" style="flex-shrink: 0; width: 43px; height: auto; margin-top: 80px;" />
+          <div style="flex: 1;">
+            <p style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 4px;">New exclusions layout</p>
+            <p style="font-size: 12px; color: var(--grey); margin-bottom: 12px;">&nbsp;</p>
+            <img src="exclusions-2.png" alt="New exclusions layout" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-brand approach -->
+      <p class="section-subheading">Multi-brand approach</p>
+      <div class="section-body">
+        <p>Designing for 5 brands and over 15 languages required ensuring that the solution was fully aligned with the design system and adaptable across markets.</p>
+        <p>I worked closely with teams to verify that components were implemented consistently across React Native, Web, and Figma, resolving discrepancies and defining a clear source of truth.</p>
+        <p>For example, several components had mismatches between design files and implementation. I collaborated with the team to align them and ensure consistent behavior across brands.</p>
+        <p>Additionally, some components reused from the funnel acquisition quiz had originally been designed with the US market in mind. Since Food Profile was planned as an international feature, I initiated discussions with other teams to adapt these components for future international releases.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+        <img src="hg-food.png" alt="HelloFresh food profile dietary habits" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        <img src="factor-food.png" alt="Factor food profile dietary habits" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+      </div>
+
+      <!-- Plan size -->
+      <p class="section-subheading">HelloFresh plan size concept change proposal</p>
+      <div class="section-body">
+        <p>HelloFresh operates on a plan size model where customers select the number of people in their household and how many meals per week they want to receive. The entire menu and subscription structure is based on this concept.</p>
+        <p>Together with my product counterpart, we explored an improvement to this model. We proposed that household composition should be separated from subscription size.</p>
+        <p>Customers ultimately pay for how many servings they receive, not for the household configuration itself. Based on this, we proposed:</p>
+        <ul>
+          <li>Decoupling household size from subscription plan size</li>
+          <li>Moving household composition into the Food Profile</li>
+          <li>Allowing customers to specify adults and kids in the household</li>
+          <li>Renaming the "people" concept across the platform to servings</li>
+        </ul>
+        <p>This change clarified what customers are actually paying for while allowing Food Profile to focus on household preferences and dietary needs.</p>
+        <p>I also advocated for removing a legacy menu preference setting in the plan size configuration. This setting differed between markets and mixed several unrelated preferences. Instead, we moved these values into the Food Profile, making the plan settings clearer and focusing Food Profile specifically on customer food preferences.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr auto 1fr 1fr; column-gap: 16px; row-gap: 24px; align-items: center; margin-top: 40px;">
+        <div style="align-self: start;">
+          <p style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 20px;">Previous plan size settings</p>
+          <img src="menu-settings-1.png" alt="Previous plan size settings" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        </div>
+        <div>
+          <img src="arrow-right.svg" alt="" style="width: 43px; height: auto; display: block;" />
+        </div>
+        <div style="align-self: start;">
+          <p style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 20px;">New plan size settings</p>
+          <img src="menu-settings-2.png" alt="New plan size settings" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        </div>
+        <div style="align-self: start; margin-left: 32px;">
+          <p style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 20px;">Indication in the menu</p>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="serv-1.png" alt="Previous servings label" style="width: 100px; height: auto; display: block; border-radius: 6px; flex-shrink: 0;" />
+            <img src="arrow-right.svg" alt="" style="width: 28px; flex-shrink: 0;" />
+            <img src="serv-2.png" alt="New servings label" style="width: 100px; height: auto; display: block; border-radius: 6px; flex-shrink: 0;" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Updates in progress -->
+    <div id="updates" class="content-section reveal" style="margin-bottom: 100px;">
+      <p class="section-heading">Food profile updates in progress</p>
+      <div class="section-body">
+        <p>Further work focuses on expanding Food Profile across all HelloFresh international markets and brands.</p>
+        <p>Upcoming improvements include:</p>
+        <ul>
+          <li><span style="font-weight: 600;">Multi-member household profiles</span>, allowing customers to define preferences for individual family members and making it easier to order meals that suit the whole household.</li>
+          <li><span style="font-weight: 600;">Food profile reassurance</span> within meal selection, helping customers understand which meals best match their household preferences, allergies, and dietary needs.</li>
+          <li><span style="font-weight: 600;">Contextual prompts</span> that invite customers to complete or update their Food Profile in moments where the information can have an immediate impact, such as during meal selection.</li>
+        </ul>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-top: 48px;">
+        <div>
+          <p style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 20px;">Multi-member household profiles</p>
+          <img src="household.png" alt="Multi-member household profiles" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        </div>
+        <div>
+          <p style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 20px;">Food profile reassurance</p>
+          <img src="tags.png" alt="Food profile reassurance on recipe card" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        </div>
+        <div>
+          <p style="font-size: 16px; font-weight: 600; color: var(--dark); margin-bottom: 20px;">Contextual prompts</p>
+          <img src="banner.png" alt="Contextual prompts" style="width: 100%; height: auto; display: block; border-radius: 6px;" />
+        </div>
+      </div>
+    </div>
+
+    <div style="padding-bottom: 80px;"></div>
+
+  </div>
+  <script src="cursor.js"></script>
+  <script src="scroll.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopify Collective  -  Jolanta Cariova</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 200;
+      padding-top: 8px;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 5px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { color: var(--blue); }
+  </style>
+</head>
+<body>
+
+  <div class="blob blob-top" aria-hidden="true"><img src="red-gradient.png" alt="" /></div>
+  <div class="blob blob-bottom" aria-hidden="true"><img src="blue-gradient.png" alt="" /></div>
+
+  <div class="page">
+
+    <!-- Nav -->
+    <header class="header">
+      <div class="header-identity">
+        <a href="index.html" class="site-logo"><img src="jolanta-logo.svg" alt="Jolanta Cariova" /></a>
+        <span class="site-role">Senior product designer</span>
+      </div>
+      <nav class="nav">
+        <div class="nav-dropdown">
+          <a href="shopify-collective.html" class="nav-link" style="color: var(--blue);">Shopify Collective</a>
+          <div class="nav-dropdown-menu">
+            <a href="shopify-collective.html" onclick="event.preventDefault(); document.querySelector('#overview').scrollIntoView({behavior:'smooth', block:'start'});">Project overview</a>
+            <a href="shopify-supplier.html">Supplier - Price list</a>
+            <a href="shopify-retailer.html">Retailer - Products import</a>
+          </div>
+        </div>
+        <a href="food-profile.html" class="nav-link">HelloFresh Food profile</a>
+        <a href="resume.html" class="nav-link">Resume</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <div class="page-hero reveal">
+      <div class="hero-meta">
+        <div class="hero-logo">
+          <img src="collective-logo.png" alt="Shopify Collective" />
+        </div>
+        <p class="hero-period">2021 - 2023</p>
+        <p class="hero-intro">Shopify Collective is a native Shopify app that empowers collaboration between Shopify merchants, allowing them to sell each other's products seamlessly within the Shopify ecosystem.</p>
+        <a href="https://www.shopify.com/collective" class="hero-link" target="_blank" rel="noopener">
+          <img src="link.svg" alt="" /> Shopify Collective website
+        </a>
+      </div>
+      <div class="hero-image">
+        <img src="collective-visual.png" alt="Shopify Collective interface" />
+      </div>
+    </div>
+
+    <!-- Info cards -->
+    <div class="info-cards">
+      <div class="info-card reveal">
+        <p class="info-card-label">Platform</p>
+        <p class="info-card-value">Web desktop</p>
+      </div>
+      <div class="info-card reveal">
+        <p class="info-card-label">Format</p>
+        <p class="info-card-value">Shopify native sales channel</p>
+      </div>
+      <div class="info-card reveal">
+        <p class="info-card-label">Timeline</p>
+        <p class="info-card-value">2021 - 2023<br>Launched 2022</p>
+      </div>
+      <div class="info-card reveal">
+        <p class="info-card-label">Scale</p>
+        <p class="info-card-value">Adopted by thousands of merchants</p>
+      </div>
+      <div class="info-card reveal">
+        <p class="info-card-label">Role and team</p>
+        <p class="info-card-value">Leading Catalog team UX<br>10 designers in the product</p>
+      </div>
+    </div>
+
+    <!-- Contents -->
+    <p class="section-label">Contents</p>
+    <ul class="toc">
+      <li>
+        <a href="#overview" onclick="event.preventDefault(); document.querySelector('#overview').scrollIntoView({behavior:'smooth', block:'start'});">Shopify Collective project overview</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="shopify-supplier.html">Project: Supplier - Price list</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+      <li>
+        <a href="shopify-retailer.html">Project: Retailer - Products import</a>
+        <img src="chevron.svg" alt="" class="toc-arrow" />
+      </li>
+    </ul>
+
+    <!-- My role + Challenge -->
+    <div id="overview" class="two-col reveal">
+      <div>
+        <p class="col-heading">My role</p>
+        <div class="col-body">
+          <p>I joined Shopify Collective as an early designer on the project, which meant being involved in shaping it before the patterns were established. I ran qualitative research with merchants, collaborated closely with product managers and engineers to define flows, built and tested prototypes, and owned the catalog creation experience end-to-end  -  the core flow that lets suppliers curate which products they make available to retail partners and lets retailers import products they wish to sell from their partners.</p>
+        </div>
+      </div>
+      <div>
+        <p class="col-heading">Challenge</p>
+        <div class="col-body">
+          <p>Merchants who wanted to sell each other's products had no native way to do it inside Shopify. The process was entirely manual  -  emails, spreadsheets, one-off agreements. Our challenge was to design a system that could automate this relationship end-to-end, while serving two sides with fundamentally different needs.</p>
+          <p>Suppliers wanted to expand their business while protecting their brand and staying in control of how their products appeared in a partner's store. Retailers needed to discover and sell products without friction. While the end customer experience would stay seamless and unaffected.</p>
+          <p>Getting all of this right meant thinking carefully about every role in the system and making sure each one got exactly what they needed without being burdened by the complexity behind it.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Showcase image -->
+    <div class="showcase-image reveal">
+      <img src="collective-visual-1.png" alt="Shopify Collective Supplier and Retailer apps" />
+    </div>
+
+    <!-- Solution + Impact -->
+    <div class="two-col-wide reveal">
+      <div>
+        <p class="col-heading">Solution</p>
+        <div class="col-body">
+          <p>We designed a two-sided system that enables Shopify merchants to exchange products and expand their offerings through collaboration.</p>
+          <p>Suppliers can create price lists and share their products with selected retailers. Retailers can then browse these shared price lists, import products into their own stores, and sell them to their customers. Once a purchase is made, the supplier handles fulfillment and ships the product directly to the end customer.</p>
+          <p>This creates a seamless workflow where both sides benefit  -  suppliers gain additional distribution, while retailers can expand their catalog without managing inventory.</p>
+          <p>As part of this project, I designed the core product exchange experience for both suppliers and retailers, which is further detailed in the following case studies.</p>
+        </div>
+      </div>
+      <div>
+        <p class="col-heading">Impact</p>
+        <div class="col-body">
+          <p style="font-weight: 600; margin-bottom: 12px;">Merchant impact</p>
+          <p>Merchants who had previously managed supplier relationships through emails and spreadsheets could now handle the entire process within their Shopify admin. Both suppliers and retailers gained clarity and control  -  suppliers over how their products appeared in partner stores, retailers over what they imported and sold. The experience was designed to feel familiar from day one, reducing the learning curve for a completely new type of workflow inside Shopify.</p>
+          <p style="font-weight: 600; margin-top: 24px; margin-bottom: 12px;">Business impact</p>
+          <p>Shopify Collective launched as a flagship feature at Shopify Editions  -  the company's major product showcase  -  and has continued to scale since. The catalog creation flow I designed became the foundation the team built on as the product expanded to thousands of merchants internationally. Given the expected demand, we launched first with a small group of pre-selected merchants to identify issues early and ensure the system worked reliably before scaling to the full merchant base.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design process -->
+    <div class="content-section reveal" style="margin-top: 80px;">
+      <p class="section-heading">Design process</p>
+      <div class="section-body">
+        <p>I worked as a Senior Product Designer on Shopify Collective for approximately two years, collaborating with a team of ten product designers. We began with extensive market research, data analysis, and user interviews to shape our initial direction.</p>
+        <p>After refining our initial idea, we conducted prototype testing with our target group to gather feedback and solidify our approach. As the project evolved, we divided responsibilities into ownership areas and formed specific full product teams. I was a member of the Catalogs team, leading two critical parts of the product: the Price List section for suppliers to create and share product catalogs, and the Products Importing section for retailers to view, choose, and add shared products to their stores.</p>
+        <p>Within the Catalogs team, I conducted ongoing research while managing a complex array of features and interactions between these key components. I collaborated extensively with our design team, my dedicated product team, and regularly reported to product stakeholders, collecting continuous feedback.</p>
+        <p>Prior to the initial release, I oversaw the full end-to-end project experience and prepared a comprehensive journey for Shopify's C-level stakeholders to approve the final build. Following the first release, we continuously gathered merchant feedback and iterated on features.</p>
+      </div>
+    </div>
+
+    <!-- Core experience walkthrough -->
+    <div class="content-section reveal">
+      <p class="section-heading">Core experience walkthrough</p>
+      <div class="section-body">
+        <p>Lalo, a kids' product brand, and Snuggle Me, a baby sleep and feeding brand, meet at a fair and see an opportunity: Lalo wants to expand into sleep products, and Snuggle Me is a natural fit. Both sign up for Shopify Collective.</p>
+        <p>As a supplier, Snuggle Me installs the app, completes onboarding, and creates a specialised price list for Lalo  -  choosing which products to share and setting a discount.</p>
+        <p>As a retailer, Lalo receives the price list, browses Snuggle Me's available products with specialised pricing, and imports the ones they want. Those products are immediately live in their Shopify store.</p>
+        <p>For the end customer: Lisa shops on Lalo's store, adds a feeding chair and a Snuggle Me baby lounger to her cart, and checks out in one transaction. Behind the scenes, each brand fulfils their own product. They receive two packages  -  the experience is seamless.</p>
+      </div>
+    </div>
+
+    <!-- Case studies -->
+    <p class="section-label case-studies-label">Case studies</p>
+    <div class="case-study-cards">
+      <a href="shopify-supplier.html" class="case-card-link reveal">
+        <div class="case-card-image">
+          <img src="price-list-img.png" alt="Supplier - Price list" />
+        </div>
+        <p class="case-card-title">Supplier - Price list</p>
+        <p class="case-card-desc">Designing the core supplier-side workflow  -  from creating curated price lists to managing retailer access and product availability.</p>
+        <span class="case-link">View the case study</span>
+      </a>
+      <a href="shopify-retailer.html" class="case-card-link reveal">
+        <div class="case-card-image">
+          <img src="product-import-img.png" alt="Retailer - Products import" />
+        </div>
+        <p class="case-card-title">Retailer - Products import</p>
+        <p class="case-card-desc">Designing the retailer-side experience  -  discovering supplier catalogs, importing products, and making them live in the store instantly.</p>
+        <span class="case-link">View the case study</span>
+      </a>
+    </div>
+
+    <div style="padding-bottom: 80px;"></div>
+
+  </div>
+  <script src="cursor.js"></script>
+  <script src="scroll.js"></script>
+</body>
+</html>

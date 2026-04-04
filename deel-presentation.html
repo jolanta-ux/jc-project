@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HelloFresh Food Profile — Jolanta Cariova</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:  #021df5;
+      --dark:  #101010;
+      --grey:  #797979;
+      --red:   #fc0524;
+      --white: #ffffff;
+      --pad:   72px;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      font-family: 'Mulish', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      overflow: hidden;
+    }
+
+    /* ── Cursor glow ── */
+    .cursor-glow {
+      position: fixed;
+      top: 0; left: 0;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(2,29,245,0.13) 0%, rgba(2,29,245,0.05) 45%, transparent 70%);
+      pointer-events: none;
+      z-index: 9999;
+      will-change: transform;
+      transform: translate(-50%, -50%);
+    }
+
+    /* ── Background blobs ── */
+    .blob {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-top  { width: 720px; top: -100px; right: -100px; animation: blob-drift 6s ease-in-out infinite; }
+    .blob-bottom { width: 700px; bottom: -80px; left: -100px; }
+    .blob img  { width: 100%; height: auto; display: block; }
+
+    @keyframes blob-drift {
+      0%,100% { transform: scale(1) translate(0,0);       filter: brightness(1.3); }
+      30%      { transform: scale(1.1) translate(-18px,10px); filter: brightness(1.6); }
+      65%      { transform: scale(0.94) translate(10px,-14px); filter: brightness(1.15); }
+    }
+
+    /* ── Deck & slides ── */
+    .deck { width: 100%; height: 100%; position: relative; }
+
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      padding: 52px var(--pad) 80px;
+      z-index: 1;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      overflow: hidden;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Slide content reveal on activation */
+    .slide .s-body {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s;
+    }
+    .slide.active .s-body {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Progress bar ── */
+    .progress-bar {
+      position: fixed; top: 0; left: 0;
+      height: 3px; background: var(--blue);
+      transition: width 0.4s ease; z-index: 100;
+    }
+
+    /* ── Nav ── */
+    .nav-bar {
+      position: fixed; bottom: 28px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; align-items: center; gap: 20px;
+      z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 100px;
+      padding: 10px 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    .nav-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--grey); font-size: 16px; line-height: 1;
+      padding: 2px 8px; border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+      font-family: 'Mulish', sans-serif;
+    }
+    .nav-btn:hover { color: var(--blue); background: rgba(2,29,245,0.06); }
+
+    .slide-counter {
+      font-size: 13px; font-weight: 600;
+      color: var(--grey); min-width: 52px; text-align: center;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Section label (red, like portfolio) ── */
+    .s-label {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--red);
+      margin-bottom: 20px;
+    }
+
+    /* ── Slide title ── */
+    .s-title {
+      font-size: clamp(24px, 2.8vw, 42px);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
+    .s-title-xl {
+      font-size: clamp(32px, 4.5vw, 68px);
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    /* Inline blue highlight */
+    .hl { color: var(--blue); }
+    .hl-red { color: var(--red); }
+
+    /* ── Body text (matches portfolio .col-body) ── */
+    .s-body-text {
+      font-size: 18px;
+      line-height: 32px;
+      color: var(--dark);
+    }
+
+    .s-body-text p + p { margin-top: 14px; }
+
+    .s-body-text ul {
+      padding-left: 22px;
+      margin: 12px 0;
+    }
+    .s-body-text li { margin-bottom: 6px; line-height: 32px; }
+
+    /* ── Divider ── */
+    .s-divider {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 28px 0;
+    }
+
+    /* ── Two column layout ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .two-col-wide {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 52px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      flex: 1;
+    }
+
+    /* ── Info cards (exact match to portfolio) ── */
+    .info-cards {
+      display: flex;
+      gap: 12px;
+    }
+
+    .info-card {
+      flex: 1;
+      background: var(--blue);
+      border-radius: 10px;
+      padding: 22px 20px;
+      color: #fff;
+    }
+
+    .info-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      opacity: 0.65;
+      margin-bottom: 10px;
+    }
+
+    .info-card-value {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+    }
+
+    /* ── White card ── */
+    .w-card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 24px 28px;
+    }
+
+    .w-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--grey);
+      margin-bottom: 10px;
+    }
+
+    /* ── Stat block (big metrics) ── */
+    .stat-num {
+      font-size: clamp(44px, 5.5vw, 80px);
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--dark);
+      margin-top: 10px;
+      max-width: 240px;
+    }
+
+    /* ── The portfolio CTA button ── */
+    .proto-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 32px;
+      height: 56px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 400;
+      font-family: 'Mulish', sans-serif;
+      border-radius: 100px;
+      text-decoration: none;
+      position: relative;
+      overflow: visible;
+      isolation: isolate;
+      margin-top: 24px;
+      width: fit-content;
+    }
+
+    .proto-btn::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--blue);
+      border-radius: 100px;
+      z-index: -1;
+      transition: opacity 0.4s ease;
+    }
+
+    .proto-btn::before {
+      content: '';
+      position: absolute;
+      inset: -20px -30px;
+      background: radial-gradient(ellipse at 40% 50%,
+        rgba(59,84,255,0.7) 0%, rgba(2,29,245,0.45) 40%,
+        rgba(0,56,255,0.15) 65%, transparent 80%);
+      filter: blur(14px);
+      opacity: 0; z-index: -2;
+      transition: opacity 0.4s ease;
+      border-radius: 50%;
+    }
+
+    .proto-btn:hover::after  { opacity: 0; }
+    .proto-btn:hover::before { opacity: 1; }
+
+    /* ── Image helpers ── */
+    .img-fit {
+      width: 100%; height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* ── Timeline ── */
+    .timeline { display: flex; flex-direction: column; gap: 24px; }
+
+    .t-item { display: flex; gap: 20px; align-items: flex-start; }
+
+    .t-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      margin-top: 6px; flex-shrink: 0;
+    }
+
+    .t-dot.active { background: var(--blue); }
+
+    .t-period {
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--grey); margin-bottom: 2px;
+    }
+
+    .t-company { font-weight: 700; font-size: 16px; }
+    .t-role    { font-size: 14px; color: var(--grey); margin-top: 2px; }
+
+    /* ── Before / after ── */
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 40px 1fr;
+      gap: 0;
+      align-items: center;
+    }
+
+    .ba-col { display: flex; flex-direction: column; gap: 10px; }
+
+    .ba-label {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    .ba-label-before { color: var(--grey); }
+    .ba-label-after  { color: var(--blue); }
+
+    .ba-arrow {
+      text-align: center;
+      font-size: 20px;
+      color: #e0e0e0;
+    }
+
+    /* ── Section tag on blue ── */
+    .s-tag-white {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.6px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 16px;
+    }
+
+    /* ── Blue full-bleed slide ── */
+    .slide-blue { background: var(--blue); color: #fff; }
+    .slide-blue .s-title { color: #fff; }
+    .slide-blue .s-body-text { color: rgba(255,255,255,0.85); }
+    .slide-blue .s-divider { border-color: rgba(255,255,255,0.2); }
+
+    /* ── Dark slide ── */
+    .slide-dark { background: var(--dark); color: #fff; }
+    .slide-dark .s-title { color: #fff; }
+    .slide-dark .s-body-text { color: rgba(255,255,255,0.75); }
+    .slide-dark .s-divider { border-color: rgba(255,255,255,0.12); }
+
+    /* Quote */
+    .s-quote {
+      border-left: 3px solid var(--blue);
+      padding-left: 20px;
+      margin: 20px 0;
+      font-size: 20px;
+      line-height: 32px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--dark);
+    }
+
+    /* Pill tag */
+    .pill {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 13px; font-weight: 600;
+    }
+
+    .pill-blue { background: rgba(2,29,245,0.1); color: var(--blue); }
+    .pill-grey { background: #f2f2f2; color: var(--dark); }
+
+    /* AI tag */
+    .ai-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px;
+      background: rgba(2,29,245,0.08);
+      border-radius: 6px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+
+    /* Step number circle */
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--blue); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .step-row { display: flex; gap: 16px; align-items: flex-start; }
+
+    /* Logo in corner */
+    .slide-logo {
+      height: 22px; width: auto;
+      display: block; margin-bottom: 36px;
+      opacity: 0.65;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Cursor glow -->
+<div class="cursor-glow" id="cursor"></div>
+
+<!-- Background blobs -->
+<div class="blob blob-top"    aria-hidden="true"><img src="red-gradient.png"  alt="" /></div>
+<div class="blob blob-bottom" aria-hidden="true"><img src="blue-gradient.png" alt="" /></div>
+
+<!-- Progress bar -->
+<div class="progress-bar" id="progress"></div>
+
+<div class="deck" id="deck">
+
+  <!-- ══════════════════════════════════════════
+       01 — Cover
+  ══════════════════════════════════════════ -->
+  <div class="slide active" id="s1">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center; max-width: 820px;">
+      <img src="hf-logo.png" alt="HelloFresh" class="slide-logo" />
+      <p class="s-label">Deel Case Study Interview</p>
+      <h1 class="s-title-xl">HelloFresh<br><span class="hl">Food Profile</span></h1>
+      <p style="font-size:20px; line-height:32px; color:var(--grey); max-width:520px; margin-top:8px;">A strategic personalization platform across 5 international brands and 15 markets.</p>
+      <hr class="s-divider" style="max-width:480px; margin-top:36px; margin-bottom:36px;" />
+      <p style="font-size:16px; color:var(--dark);">Jolanta Cariova &nbsp;·&nbsp; Senior Product Designer &nbsp;·&nbsp; 2025 – Present</p>
+    </div>
+    <div class="s-body" style="margin-top:40px;">
+      <div class="info-cards">
+        <div class="info-card"><p class="info-card-label">Platform</p><p class="info-card-value">Web + App<br>15 markets · 5 brands</p></div>
+        <div class="info-card"><p class="info-card-label">Timeline</p><p class="info-card-value">2025 Q4 – Present<br>Live &amp; scaling</p></div>
+        <div class="info-card"><p class="info-card-label">Adoption</p><p class="info-card-value">20% organic completion<br>50%+ projected</p></div>
+        <div class="info-card"><p class="info-card-label">AI workflows</p><p class="info-card-value">Figma Make · Vercel<br>Claude · Claude Code</p></div>
+        <div class="info-card"><p class="info-card-label">Role</p><p class="info-card-value">Lead designer<br>Customer Profile UX</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       02 — About me
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s2">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">Intro</p>
+      <h2 class="s-title">Who I am</h2>
+      <hr class="s-divider" style="margin-top:0;" />
+      <div class="two-col" style="flex:none; align-items:start; gap:80px;">
+        <div>
+          <p class="s-body-text">Senior Product Designer with 8+ years designing complex digital products — across growth, marketplace, and platform domains.</p>
+          <p class="s-body-text" style="margin-top:16px;">I work across the full design process: research, IA, interaction, systems, and cross-team delivery.</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:28px;">
+            <span class="pill pill-blue">End-to-end product design</span>
+            <span class="pill pill-blue">AI-assisted workflows</span>
+            <span class="pill pill-blue">Complex web applications</span>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div>
+              <p class="t-period">Earlier</p>
+              <p class="t-company">Adform + Freelance</p>
+              <p class="t-role">Ad-tech platform design · Web design</p>
+            </div>
+          </div>
+          <div class="t-item">
+            <div class="t-dot"></div>
+            <div>
+              <p class="t-period">2021 – 2023</p>
+              <p class="t-company">Shopify</p>
+              <p class="t-role">Oberlo Growth → Handshake → Collective catalog &amp; B2B marketplace</p>
+            </div>
+          </div>
+          <div class="t-item">
+            <div class="t-dot active"></div>
+            <div>
+              <p class="t-period">Oct 2025 – Present</p>
+              <p class="t-company" style="color:var(--blue);">HelloFresh</p>
+              <p class="t-role">Leading Customer Profile UX — Food Profile</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       03 — End product first
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s3">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">The product</p>
+      <div class="two-col-wide" style="flex:none;">
+        <div>
+          <img src="hf-logo.png" alt="HelloFresh" class="slide-logo" />
+          <h2 class="s-title">Food Profile</h2>
+          <p class="s-body-text">A centralized preference system where customers define and manage their food tastes — powering ML-driven personalization across HelloFresh's entire recipe menu.</p>
+          <hr class="s-divider" />
+          <p class="s-body-text">
+            Customers can set diet preferences, define household composition, set hard restrictions (diet type, allergies), and express taste preferences — all of which immediately adjust the menu ranking.
+          </p>
+          <a href="https://www.figma.com/proto/LRXRjQVve5ARM3HFa32LFe/Food-profile?node-id=1-14262&t=7pBIm9r05GSUYvar-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A14262" target="_blank" rel="noopener" class="proto-btn">View prototype</a>
+        </div>
+        <div>
+          <img src="food-profile-visual.png" alt="Food Profile interface" class="img-fit" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       04 — Context
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s4">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">Context</p>
+      <div class="two-col" style="flex:none; align-items:start; gap:80px;">
+        <div>
+          <h2 class="s-title">The product &amp; the team</h2>
+          <div class="s-body-text">
+            <p>HelloFresh is the world's largest meal-kit company, serving approximately 8 million customers globally.</p>
+            <p>As the menu expanded from <strong>~100 → 500+ recipes per week</strong>, strong personalization became critical. Without it, customers face an overwhelming, irrelevant choice.</p>
+            <p>A new Personalization team was formed to close this gap. I joined as the <strong>sole designer</strong>, leading Customer Profile UX end-to-end.</p>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div class="w-card">
+            <p class="w-card-label">My role</p>
+            <p style="font-size:16px; font-weight:600; color:var(--dark); margin-bottom:6px;">Lead Designer — Food Profile</p>
+            <p style="font-size:15px; color:var(--grey); line-height:1.55;">Research · IA · UX patterns · Design system · Multi-brand delivery</p>
+          </div>
+          <div class="w-card">
+            <p class="w-card-label">Cross-team collaboration</p>
+            <p style="font-size:15px; color:var(--grey); line-height:1.65;">Personalization engineering · ML team · UX Research · Design System · Copywriters · International market teams</p>
+          </div>
+          <div class="w-card">
+            <p class="w-card-label">Scope</p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
+              <span class="pill pill-blue">Web</span>
+              <span class="pill pill-blue">iOS + Android</span>
+              <span class="pill pill-blue">5 brands</span>
+              <span class="pill pill-blue">15+ markets</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       05 — The problem: before
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s5">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">The problem</p>
+      <div class="two-col-wide" style="flex:none;">
+        <div>
+          <h2 class="s-title">Before: one size fits all</h2>
+          <div class="s-body-text">
+            <p>Every HelloFresh customer received the <strong>exact same experience</strong> regardless of who they were.</p>
+            <p>Menu personalization came down to a single generic preference dropdown — a handful of broad categories. Everyone got the same menu ranking and the same pre-selected meals.</p>
+          </div>
+          <div class="s-quote">"HelloFresh knew your delivery address but not that you don't eat fish."</div>
+          <p class="s-body-text">For loyal customers ordering every week for months or years, this was increasingly frustrating. No way to tell HelloFresh what they loved, what they'd never eat, or what kind of cooking they wanted to do.</p>
+        </div>
+        <div>
+          <p style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); margin-bottom:14px;">Previous experience — single preference dropdown</p>
+          <img src="food-profile-splash.png" alt="Old preference setting" class="img-fit" style="border: 1px solid #e8e8e8;" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       06 — Business problem
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s6">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">The problem</p>
+      <h2 class="s-title">The business impact of no personalization</h2>
+      <hr class="s-divider" style="margin-top:0;" />
+      <div class="three-col" style="flex:none; margin-top:8px;">
+        <div class="w-card" style="display:flex; flex-direction:column; gap:14px;">
+          <p style="font-size:28px;">📈</p>
+          <p style="font-size:16px; font-weight:700;">Menu scaling pressure</p>
+          <p class="s-body-text" style="font-size:16px; line-height:26px; color:var(--grey);">100 → 500+ recipes per week. Without personalization, customers face overwhelming choice with no relevance signal.</p>
+        </div>
+        <div class="w-card" style="display:flex; flex-direction:column; gap:14px;">
+          <p style="font-size:28px;">🤖</p>
+          <p style="font-size:16px; font-weight:700;">ML had no explicit signal</p>
+          <p class="s-body-text" style="font-size:16px; line-height:26px; color:var(--grey);">Implicit behavioral data alone was insufficient. The ML team needed explicit preference input to train and rank recipes effectively.</p>
+        </div>
+        <div class="w-card" style="display:flex; flex-direction:column; gap:14px;">
+          <p style="font-size:28px;">📉</p>
+          <p style="font-size:16px; font-weight:700;">Engagement &amp; retention risk</p>
+          <p class="s-body-text" style="font-size:16px; line-height:26px; color:var(--grey);">Loyal customers felt unseen. Irrelevant menus erode trust and increase churn likelihood for long-term subscribers.</p>
+        </div>
+      </div>
+      <p style="margin-top:36px; font-size:18px; line-height:30px; color:var(--dark);">Food Profile was the response: give customers a voice, give the ML team a signal.</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       07 — Research
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s7">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">Research</p>
+      <div class="two-col" style="flex:none; align-items:start; gap:64px;">
+        <div>
+          <h2 class="s-title">How do customers think about food?</h2>
+          <div class="s-body-text">
+            <p>I partnered with the UX research team on a <strong>card sorting exercise</strong> to understand how customers mentally grouped food preferences, subscription settings, and related options.</p>
+            <p>Key finding: customers' mental model <strong>differed significantly</strong> from the product team's assumptions. Those findings directly shaped the structure of Food Profile's categories.</p>
+          </div>
+          <hr class="s-divider" />
+          <p style="font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--grey); margin-bottom:14px;">Also conducted</p>
+          <div class="s-body-text" style="font-size:16px;">
+            <ul>
+              <li>Concept testing — 3 directions explored</li>
+              <li>Usability sessions before release</li>
+              <li>Post-launch Sprig session recordings</li>
+              <li>Moderated personalization study (in planning)</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); margin-bottom:14px;">Card sorting results — category clustering</p>
+          <img src="card-sorting.png" alt="Card sorting" class="img-fit" style="border:1px solid #e8e8e8;" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       08 — Personalization system
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s8">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">System thinking</p>
+      <div class="two-col" style="flex:none; align-items:start; gap:64px;">
+        <div>
+          <h2 class="s-title">How personalization works</h2>
+          <div class="s-body-text">
+            <p>Every design decision about what questions to collect was tied directly to a personalization signal. Nothing was included without an ML use case.</p>
+          </div>
+          <hr class="s-divider" />
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="info-card" style="background:var(--blue);">
+              <p class="info-card-label">Explicit signals — from Food Profile</p>
+              <p class="info-card-value">Diet type · Allergies · Household size · Cuisines · Proteins · Dish types</p>
+            </div>
+            <div class="w-card">
+              <p class="w-card-label">Implicit signals — from behavior</p>
+              <p style="font-size:15px; color:var(--dark); line-height:1.55;">Recipes ordered · Recipes skipped · Weekly selections · Meal ratings</p>
+            </div>
+            <div class="w-card" style="border-color: rgba(2,29,245,0.2); background: rgba(2,29,245,0.04);">
+              <p class="w-card-label" style="color:var(--blue);">Output</p>
+              <p style="font-size:15px; color:var(--dark); line-height:1.55;">ML scores recipes → dynamically ranks the menu → pre-selects weekly meals. All recipes remain available — no over-filtering.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="food-profile-flow.png" alt="Personalization system flow" class="img-fit" style="border:1px solid #e8e8e8;" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       09 — Information Architecture
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s9">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">Design process</p>
+      <div class="two-col" style="flex:none; align-items:center; gap:64px;">
+        <div>
+          <h2 class="s-title">What to collect &amp; how to structure it</h2>
+          <p class="s-body-text" style="margin-bottom:28px;">Structured from hardest restrictions to softest preferences — matching both the user's mental model and ML signal priority.</p>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="step-row">
+              <div class="step-num">1</div>
+              <div>
+                <p style="font-weight:700; font-size:16px;">Hard restrictions</p>
+                <p style="font-size:15px; color:var(--grey); line-height:1.5;">Diet type · Allergies — safety-critical, highest ML signal value</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <div class="step-num" style="background:rgba(2,29,245,0.15); color:var(--blue);">2</div>
+              <div>
+                <p style="font-weight:700; font-size:16px;">Household context</p>
+                <p style="font-size:15px; color:var(--grey); line-height:1.5;">Household size &amp; composition — servings and family makeup</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <div class="step-num" style="background:rgba(2,29,245,0.08); color:var(--blue);">3</div>
+              <div>
+                <p style="font-weight:700; font-size:16px;">Taste preferences</p>
+                <p style="font-size:15px; color:var(--grey); line-height:1.5;">Proteins · Cuisines · Dish types — flexible, personalization-enhancing</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="food-profile-img.png" alt="Food profile screen" class="img-fit" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       10 — AI Workflows
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s10">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <div class="ai-tag">✦ AI Workflows</div>
+      <h2 class="s-title">How AI accelerated design decisions</h2>
+      <hr class="s-divider" style="margin-top:0;" />
+      <div class="three-col" style="flex:none; align-items:start;">
+        <div class="w-card" style="display:flex; flex-direction:column; gap:12px; height:100%;">
+          <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue);">Rapid exploration</p>
+          <p style="font-weight:700; font-size:16px;">Figma Make + Vercel + Claude</p>
+          <p style="font-size:15px; color:var(--grey); line-height:1.6;">Prototyped early concepts and 3 design directions in hours, not days. Enabled productive team alignment conversations much earlier in the process.</p>
+          <hr class="s-divider" style="margin:8px 0;" />
+          <p style="font-size:13px; color:var(--blue); font-weight:600;">Arrived at usability testing with 3 directions instead of 1</p>
+        </div>
+        <div class="w-card" style="display:flex; flex-direction:column; gap:12px; height:100%;">
+          <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue);">Quality assurance</p>
+          <p style="font-weight:700; font-size:16px;">Claude Code</p>
+          <p style="font-size:15px; color:var(--grey); line-height:1.6;">Reviewed designs for accessibility compliance and design system consistency before dev handoff. Surfaced issues earlier, made DS team conversations more targeted.</p>
+          <hr class="s-divider" style="margin:8px 0;" />
+          <p style="font-size:13px; color:var(--blue); font-weight:600;">Fewer design-to-dev revision cycles</p>
+        </div>
+        <div class="w-card" style="display:flex; flex-direction:column; gap:12px; height:100%;">
+          <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue);">Collaboration</p>
+          <p style="font-weight:700; font-size:16px;">Claude for docs &amp; copy</p>
+          <p style="font-size:15px; color:var(--grey); line-height:1.6;">Drafted acceptance criteria, testing scenarios, and UX copy proposals. Gave copywriters a stronger starting point and gave PM/eng clearer scope context.</p>
+          <hr class="s-divider" style="margin:8px 0;" />
+          <p style="font-size:13px; color:var(--blue); font-weight:600;">Faster cross-team alignment on intent</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       11 — Full user journey
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s11">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">Full user journey</p>
+      <h2 class="s-title">Entry points, happy path &amp; edge cases</h2>
+      <hr class="s-divider" style="margin-top:0;" />
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+        <div class="w-card">
+          <p class="w-card-label" style="color:var(--blue);">Entry points</p>
+          <ul style="padding-left:18px; font-size:15px; color:var(--dark); line-height:1.8;">
+            <li>Account settings → Food Profile page</li>
+            <li>Post-meal-rating prompt <span style="color:var(--grey);">(in progress)</span></li>
+            <li>Meal selection contextual banner <span style="color:var(--grey);">(in progress)</span></li>
+          </ul>
+        </div>
+        <div class="w-card" style="border-color:rgba(34,160,107,0.3); background:rgba(34,160,107,0.03);">
+          <p class="w-card-label" style="color:#22a06b;">Happy path</p>
+          <ul style="padding-left:18px; font-size:15px; color:var(--dark); line-height:1.8;">
+            <li>User opens Food Profile, completes all categories</li>
+            <li>Saves — personalization applies immediately</li>
+            <li>Menu re-ranks in real time on next visit</li>
+          </ul>
+        </div>
+        <div class="w-card" style="border-color:rgba(255,139,0,0.3); background:rgba(255,139,0,0.03);">
+          <p class="w-card-label" style="color:#c97500;">Edge cases</p>
+          <ul style="padding-left:18px; font-size:15px; color:var(--dark); line-height:1.8;">
+            <li>Partial completion — personalization works with partial data</li>
+            <li>Conflicting selections (vegan + seafood) — graceful, no blocking</li>
+            <li>Skipping all questions — zero-state, no empty UI</li>
+            <li>Long translation strings — localization-tested, 15+ languages</li>
+          </ul>
+        </div>
+        <div class="w-card" style="border-color:rgba(252,5,36,0.2); background:rgba(252,5,36,0.02);">
+          <p class="w-card-label" style="color:var(--red);">Error states</p>
+          <ul style="padding-left:18px; font-size:15px; color:var(--dark); line-height:1.8;">
+            <li>Save failure — sticky bar with retry + error message</li>
+            <li>Connectivity loss — local state preserved, save queued</li>
+            <li>Allergy conflict with plan — user informed, not blocked</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       12 — Multi-surface
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s12">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">Multi-surface</p>
+      <div class="two-col" style="flex:none; align-items:start; gap:64px;">
+        <div>
+          <h2 class="s-title">Web + App across 5 brands</h2>
+          <div class="s-body-text">
+            <p>The same experience had to work across React Native (iOS &amp; Android) and Web — touch-first patterns vs. responsive, keyboard navigation, different viewport constraints.</p>
+          </div>
+          <hr class="s-divider" />
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div class="w-card" style="border-color:rgba(2,29,245,0.2); background:rgba(2,29,245,0.04);">
+              <p class="w-card-label" style="color:var(--blue);">5 brands · 15 markets</p>
+              <p style="font-size:15px; color:var(--dark); line-height:1.55;">Identical UX, different brand expression via design system tokens. I verified component parity between Figma files, React Native, and Web.</p>
+            </div>
+            <div class="w-card">
+              <p class="w-card-label">International reach</p>
+              <p style="font-size:15px; color:var(--grey); line-height:1.5;">HelloFresh · Factor · GreenChef · EveryPlate · Chef's Plate</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div>
+              <p style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); margin-bottom:10px;">HelloFresh</p>
+              <img src="hg-food.png" alt="HelloFresh food profile" class="img-fit" style="border:1px solid #e8e8e8;" />
+            </div>
+            <div>
+              <p style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); margin-bottom:10px;">Factor</p>
+              <img src="factor-food.png" alt="Factor food profile" class="img-fit" style="border:1px solid #e8e8e8;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       13 — Design system: save pattern
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s13">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">Design system contribution</p>
+      <h2 class="s-title">Raising quality across the platform</h2>
+      <hr class="s-divider" style="margin-top:0;" />
+      <div class="two-col" style="flex:none; align-items:start;">
+        <div>
+          <p style="font-size:16px; font-weight:700; margin-bottom:6px;">Save pattern</p>
+          <p style="font-size:15px; color:var(--grey); margin-bottom:20px;">Inconsistent save interactions across the platform</p>
+          <div class="before-after">
+            <div class="ba-col">
+              <p class="ba-label ba-label-before">Before</p>
+              <img src="save-patterns.png" alt="Inconsistent save patterns" class="img-fit" style="border:1px solid #e8e8e8;" />
+            </div>
+            <div class="ba-arrow">→</div>
+            <div class="ba-col">
+              <p class="ba-label ba-label-after">After</p>
+              <img src="implemented-save.png" alt="Sticky save bar" class="img-fit" style="border:1px solid #e8e8e8;" />
+            </div>
+          </div>
+          <p style="font-size:14px; color:var(--blue); font-weight:600; margin-top:14px;">→ Sticky bottom save bar — now a shared pattern on Web + App</p>
+        </div>
+        <div>
+          <p style="font-size:16px; font-weight:700; margin-bottom:6px;">Attributes selection</p>
+          <p style="font-size:15px; color:var(--grey); margin-bottom:20px;">MVP dropdown wasn't suited for preference selection at scale</p>
+          <div class="before-after">
+            <div class="ba-col">
+              <p class="ba-label ba-label-before">MVP</p>
+              <img src="multi-select-dropdown.png" alt="MVP dropdown" class="img-fit" style="border:1px solid #e8e8e8;" />
+            </div>
+            <div class="ba-arrow">→</div>
+            <div class="ba-col">
+              <p class="ba-label ba-label-after">New</p>
+              <img src="multi-select-drawer.png" alt="New drawer component" class="img-fit" style="border:1px solid #e8e8e8;" />
+            </div>
+          </div>
+          <p style="font-size:14px; color:var(--blue); font-weight:600; margin-top:14px;">→ New drawer-based component — reusable across Web + App</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       14 — Localization
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s14">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">Localization</p>
+      <div class="two-col" style="flex:none; align-items:start; gap:64px;">
+        <div>
+          <h2 class="s-title">15+ languages,<br>0 layout breaks</h2>
+          <div class="s-body-text">
+            <p>I took ownership of translation keys and localization handling for Food Profile — ensuring the design works reliably across all supported languages and markets.</p>
+            <p>Using Sprig session recordings post-launch, I identified a real layout breakage in the exclusions section caused by longer translation strings.</p>
+            <p>I raised the issue, designed the fix, and also identified localization issues in the international signup funnel — proposing design updates to address them.</p>
+          </div>
+        </div>
+        <div>
+          <div class="before-after">
+            <div class="ba-col">
+              <p class="ba-label ba-label-before">Before</p>
+              <p style="font-size:12px; color:var(--grey); margin-bottom:8px;">Observed in session recordings</p>
+              <img src="exclusions-1.png" alt="Previous exclusions layout" class="img-fit" style="border:1px solid #e8e8e8;" />
+            </div>
+            <div class="ba-arrow">→</div>
+            <div class="ba-col">
+              <p class="ba-label ba-label-after">After</p>
+              <p style="font-size:12px; color:var(--grey); margin-bottom:8px;">&nbsp;</p>
+              <img src="exclusions-2.png" alt="New exclusions layout" class="img-fit" style="border:1px solid #e8e8e8;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       15 — Plan size model change
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s15">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">Strategic design decision</p>
+      <div class="two-col" style="flex:none; align-items:start; gap:64px;">
+        <div>
+          <h2 class="s-title">Proposing a plan size model change</h2>
+          <div class="s-body-text">
+            <p>Working with my product counterpart, I identified that household composition was incorrectly tied to subscription plan size — a fundamental model problem.</p>
+          </div>
+          <hr class="s-divider" />
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div class="step-row">
+              <span style="color:var(--blue); font-weight:700; font-size:20px;">→</span>
+              <p style="font-size:16px; line-height:1.55;">Decoupled household composition from subscription plan size</p>
+            </div>
+            <div class="step-row">
+              <span style="color:var(--blue); font-weight:700; font-size:20px;">→</span>
+              <p style="font-size:16px; line-height:1.55;">Moved household data (adults + kids) into Food Profile</p>
+            </div>
+            <div class="step-row">
+              <span style="color:var(--blue); font-weight:700; font-size:20px;">→</span>
+              <p style="font-size:16px; line-height:1.55;">Renamed "people" → <strong>servings</strong> across the entire platform</p>
+            </div>
+            <div class="step-row">
+              <span style="color:var(--blue); font-weight:700; font-size:20px;">→</span>
+              <p style="font-size:16px; line-height:1.55;">Removed legacy mixed-preference dropdown from plan settings</p>
+            </div>
+          </div>
+          <p style="margin-top:20px; font-size:14px; color:var(--grey);">Touched: Plan team · Menu team · International market teams · Design system</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="before-after" style="grid-template-columns: 1fr 36px 1fr;">
+            <div class="ba-col">
+              <p class="ba-label ba-label-before">Before</p>
+              <img src="menu-settings-1.png" alt="Previous plan size settings" class="img-fit" style="border:1px solid #e8e8e8;" />
+            </div>
+            <div class="ba-arrow">→</div>
+            <div class="ba-col">
+              <p class="ba-label ba-label-after">After</p>
+              <img src="menu-settings-2.png" alt="New plan size settings" class="img-fit" style="border:1px solid #e8e8e8;" />
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); margin-bottom:10px;">Servings label — updated in menu</p>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <img src="serv-1.png" alt="Before" style="height:40px; width:auto; border-radius:6px; border:1px solid #e8e8e8;" />
+              <span style="color:#ccc; font-size:18px;">→</span>
+              <img src="serv-2.png" alt="After" style="height:40px; width:auto; border-radius:6px; border:1px solid #e8e8e8;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       16 — Design iterations
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s16">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">Design iterations</p>
+      <div class="two-col" style="flex:none; align-items:start; gap:64px;">
+        <div>
+          <h2 class="s-title">How design evolved through the process</h2>
+          <div class="timeline" style="margin-top:8px;">
+            <div class="t-item">
+              <div class="t-dot" style="background:#e0e0e0;"></div>
+              <div>
+                <p class="t-period">Phase 1</p>
+                <p class="t-company">Early rapid prototyping — AI-assisted</p>
+                <p class="t-role">Explored multiple IA structures and interaction patterns using Figma Make + Vercel. Arrived at team discussions with 3 directions, not 1.</p>
+              </div>
+            </div>
+            <div class="t-item">
+              <div class="t-dot" style="background:#e0e0e0;"></div>
+              <div>
+                <p class="t-period">Phase 2</p>
+                <p class="t-company">Card sorting + concept testing</p>
+                <p class="t-role">Tested category structure and question phrasing with real customers. Clear winner emerged and shaped the final IA.</p>
+              </div>
+            </div>
+            <div class="t-item">
+              <div class="t-dot" style="background:#e0e0e0;"></div>
+              <div>
+                <p class="t-period">Phase 3</p>
+                <p class="t-company">MVP — ship and learn</p>
+                <p class="t-role">Reused components to ship faster. Released to US (App + Web) incrementally, then scaled to 100% US.</p>
+              </div>
+            </div>
+            <div class="t-item">
+              <div class="t-dot active"></div>
+              <div>
+                <p class="t-period">Phase 4 — now</p>
+                <p class="t-company" style="color:var(--blue);">Post-launch iteration</p>
+                <p class="t-role">Sprig recordings surfaced friction. Replaced MVP dropdown with new drawer component. Fixed localization issues. Expanded globally.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:20px; justify-content:center;">
+          <div class="before-after">
+            <div class="ba-col">
+              <p class="ba-label ba-label-before">MVP component</p>
+              <img src="multi-select-dropdown.png" alt="MVP" class="img-fit" style="border:1px solid #e8e8e8;" />
+            </div>
+            <div class="ba-arrow">→</div>
+            <div class="ba-col">
+              <p class="ba-label ba-label-after">Iterated</p>
+              <img src="multi-select-drawer.png" alt="Iterated" class="img-fit" style="border:1px solid #e8e8e8;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       17 — User metrics
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s17">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">Results</p>
+      <h2 class="s-title">User metrics</h2>
+      <hr class="s-divider" style="margin-top:0;" />
+      <div class="three-col" style="flex:none; align-items:start;">
+        <div>
+          <div class="stat-num">20%</div>
+          <p class="stat-label">Organic profile completion rate — zero prompting, zero marketing</p>
+        </div>
+        <div>
+          <div class="stat-num">1</div>
+          <p class="stat-label">Most users completed the full profile in a single session — a strong, unexpected intent signal</p>
+        </div>
+        <div>
+          <div class="stat-num">50%+</div>
+          <p class="stat-label">Expected completion once active promotion and contextual prompts launch</p>
+        </div>
+      </div>
+      <div style="margin-top:40px; padding:24px 28px; background:rgba(2,29,245,0.05); border-radius:10px; border-left:3px solid var(--blue); max-width:800px;">
+        <p style="font-size:18px; line-height:30px; color:var(--dark);">Once customers saw their menu being tailored to their preferences, their motivation to complete the profile increased further — a powerful feedback loop between personalization quality and profile completion.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       18 — Business metrics
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s18">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">Results</p>
+      <h2 class="s-title">Business impact</h2>
+      <hr class="s-divider" style="margin-top:0;" />
+      <div class="two-col" style="flex:none; align-items:start; gap:52px;">
+        <div>
+          <p style="font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--grey); margin-bottom:20px;">Rollout sequence</p>
+          <div class="timeline">
+            <div class="t-item"><div class="t-dot" style="background:#e0e0e0;"></div><div><p class="t-role" style="font-size:16px; color:var(--dark);">US App + Web — incremental release</p></div></div>
+            <div class="t-item"><div class="t-dot" style="background:#e0e0e0;"></div><div><p class="t-role" style="font-size:16px; color:var(--dark);">Positive adoption → scaled to 100% of US users</p></div></div>
+            <div class="t-item"><div class="t-dot" style="background:#e0e0e0;"></div><div><p class="t-role" style="font-size:16px; color:var(--dark);">Expanded to Factor US customers</p></div></div>
+            <div class="t-item"><div class="t-dot active"></div><div><p class="t-role" style="font-size:16px; color:var(--dark);">Rolling out to additional international HelloFresh markets</p></div></div>
+          </div>
+        </div>
+        <div class="w-card" style="border-color:rgba(2,29,245,0.2); background:rgba(2,29,245,0.03);">
+          <p class="w-card-label" style="color:var(--blue);">Strategic value</p>
+          <div style="display:flex; flex-direction:column; gap:14px; margin-top:8px;">
+            <p style="font-size:16px; line-height:1.6;">✓ &nbsp;Enables ML personalization at scale — explicit signal previously didn't exist</p>
+            <p style="font-size:16px; line-height:1.6;">✓ &nbsp;Foundation for all future personalization features across the platform</p>
+            <p style="font-size:16px; line-height:1.6;">✓ &nbsp;Directly addresses long-term subscriber engagement and retention</p>
+            <p style="font-size:16px; line-height:1.6;">✓ &nbsp;Contributed 2 new reusable patterns to the HelloFresh design system</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       19 — What's next
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s19">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="s-label">What's next</p>
+      <h2 class="s-title">Food Profile is an evolving platform</h2>
+      <hr class="s-divider" style="margin-top:0;" />
+      <div class="three-col" style="flex:none; align-items:start;">
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <img src="household.png" alt="Multi-member household" class="img-fit" style="border:1px solid #e8e8e8;" />
+          <p style="font-size:16px; font-weight:700;">Multi-member household profiles</p>
+          <p style="font-size:15px; color:var(--grey); line-height:1.55;">Define preferences for individual family members — making it easier to order meals that suit the whole household.</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <img src="tags.png" alt="Food profile reassurance" class="img-fit" style="border:1px solid #e8e8e8;" />
+          <p style="font-size:16px; font-weight:700;">Food profile reassurance</p>
+          <p style="font-size:15px; color:var(--grey); line-height:1.55;">Labels on recipe cards helping customers understand which meals best match their preferences, allergies, and dietary needs.</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <img src="banner.png" alt="Contextual prompts" class="img-fit" style="border:1px solid #e8e8e8;" />
+          <p style="font-size:16px; font-weight:700;">Contextual prompts</p>
+          <p style="font-size:15px; color:var(--grey); line-height:1.55;">Inviting customers to complete or update Food Profile in moments of highest relevance — during meal selection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       20 — Closing
+  ══════════════════════════════════════════ -->
+  <div class="slide" id="s20">
+    <div class="s-body" style="flex:1; display:flex; flex-direction:column; justify-content:center; max-width:740px;">
+      <img src="hf-logo.png" alt="HelloFresh" class="slide-logo" />
+      <p class="s-label">Thank you</p>
+      <h2 class="s-title-xl">Let's discuss.</h2>
+      <p style="font-size:20px; line-height:32px; color:var(--grey); margin-top:16px; max-width:520px;">Food Profile is the type of work I love — complex, cross-functional, and platform-defining. I'm excited to bring this approach to Deel.</p>
+      <hr class="s-divider" style="max-width:480px;" />
+      <a href="https://www.figma.com/proto/LRXRjQVve5ARM3HFa32LFe/Food-profile?node-id=1-14262&t=7pBIm9r05GSUYvar-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A14262" target="_blank" rel="noopener" class="proto-btn">View prototype in Figma</a>
+    </div>
+    <div class="s-body" style="margin-top:40px;">
+      <div class="info-cards">
+        <div class="info-card"><p class="info-card-label">Designer</p><p class="info-card-value">Jolanta Cariova</p></div>
+        <div class="info-card"><p class="info-card-label">Role</p><p class="info-card-value">Senior Product Designer</p></div>
+        <div class="info-card"><p class="info-card-label">Project</p><p class="info-card-value">HelloFresh Food Profile</p></div>
+        <div class="info-card"><p class="info-card-label">Scope</p><p class="info-card-value">5 brands · 15 markets</p></div>
+        <div class="info-card"><p class="info-card-label">Status</p><p class="info-card-value">Live &amp; scaling</p></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- Nav -->
+<nav class="nav-bar">
+  <button class="nav-btn" id="prevBtn">←</button>
+  <span class="slide-counter" id="counter">1 / 20</span>
+  <button class="nav-btn" id="nextBtn">→</button>
+</nav>
+
+<script>
+  // Cursor glow
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.transform = `translate(${e.clientX - 240}px, ${e.clientY - 240}px)`;
+  });
+
+  // Slides
+  const slides = document.querySelectorAll('.slide');
+  const total  = slides.length;
+  let current  = 0;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, total - 1));
+    slides[current].classList.add('active');
+    document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('progress').style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight','ArrowDown',' '].includes(e.key)) { e.preventDefault(); goTo(current + 1); }
+    if (['ArrowLeft','ArrowUp'].includes(e.key))        { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'Home') goTo(0);
+    if (e.key === 'End')  goTo(total - 1);
+  });
+
+  // Touch swipe
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) dx < 0 ? goTo(current + 1) : goTo(current - 1);
+  });
+
+  goTo(0);
+</script>
+</body>
+</html>
